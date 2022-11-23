@@ -14,7 +14,7 @@ const Header = () => {
 	};
 	const navList = <>
 	<li>
-	<NavLink to={"/home"}> Home</NavLink>
+	<NavLink to={"/home"} className={'rounded-xl'}> Home</NavLink>
 	</li>
 							
 							</>
@@ -49,13 +49,7 @@ const Header = () => {
 					</div>
 					<Logo></Logo>
 				</div>
-				<div className="navbar-center hidden lg:flex">
-					
-				</div>
 				<div className="navbar-end">
-				<ul className="menu menu-horizontal p-0 pr-2">
-						{navList}
-					</ul>
 					{user?.email ? (
 						<div className="flex items-center">
 						<div className="user-info-area text-xl font-bold">
@@ -103,6 +97,15 @@ const Header = () => {
                 }
 				</div>
 			</div>
+			<div className="divider divide-slate-50 my-0"></div>
+			<div className="container mx-auto navbar pt-0 items-center justify-center hidden lg:flex">
+				<div className="navbar-center">
+				<ul className="menu menu-horizontal p-0 pr-2">
+						{navList}
+				</ul>
+				</div>
+			</div>
+
 		</header>
 	);
 };

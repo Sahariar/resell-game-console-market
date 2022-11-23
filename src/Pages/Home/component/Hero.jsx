@@ -1,17 +1,44 @@
 import React from 'react';
+import { Navigation, Pagination, Scrollbar, A11y } from 'swiper';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
+import { useLottie } from "lottie-react";
+import games from '../../../assets/games.json';
+import { Link } from 'react-router-dom';
 
 const Hero = () => {
+  const lottieAnimOptions = {
+		animationData: games,
+		loop: true,
+	};
+
+	const { View } = useLottie(lottieAnimOptions);
     return (
-        <div className="hero min-h-screen" style={{ backgroundImage: `url("https://placeimg.com/1000/800/arch")` }}>
-        <div className="hero-overlay bg-opacity-60"></div>
-        <div className="hero-content text-center text-neutral-content">
-          <div className="max-w-md">
-            <h1 className="mb-5 text-5xl font-bold">Hello there</h1>
-            <p className="mb-5">Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem quasi. In deleniti eaque aut repudiandae et a id nisi.</p>
-            <button className="btn btn-primary">Get Started</button>
+      <section className="bg-secondary/10 py-20">
+      <div className="container flex flex-col justify-center p-6 mx-auto sm:py-12 lg:py-24 lg:flex-row lg:justify-between">
+        <div className="flex flex-col justify-center p-6 text-center rounded-sm lg:max-w-md xl:max-w-xl lg:text-left">
+          <h1 className="text-5xl font-bold leading-none sm:text-6xl text-primary">Resell Market For
+            <span className="text-accent"> Used Game</span> Console.
+          </h1>
+          <p className="mt-6 mb-8 text-lg sm:mb-12">Dictum aliquam porta in condimentum ac integer
+            <br className="hidden md:inline lg:hidden" />turpis pulvinar, est scelerisque ligula sem
+          </p>
+          <div className="flex flex-col space-y-4 sm:items-center sm:justify-center sm:flex-row sm:space-y-0 sm:space-x-4 lg:justify-start">
+            <Link to={"/login"}>
+              <span className='btn-wide btn btn-primary text-white'> Get Started</span>
+            
+            </Link>
+        
           </div>
         </div>
+        <div className="flex items-center justify-center p-6 mt-8 lg:mt-0 h-72 sm:h-80 lg:h-96 xl:h-112 2xl:h-128">
+          {View}
+        </div>
       </div>
+    </section>
+   
     );
 };
 

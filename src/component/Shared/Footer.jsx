@@ -27,7 +27,7 @@ const Footer = () => {
 				</div>
 				<hr className="h-px my-6 bg-gray-200 border-none dark:bg-gray-700" />
 			</div>
-			<div class="container p-6 mx-auto">
+			<div className="container p-6 mx-auto">
 				<div className="lg:flex">
 					<div className="w-full -mx-6 lg:w-2/5">
 						<div className="px-6">
