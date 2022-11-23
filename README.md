@@ -3,6 +3,33 @@
   <img alt="Version" src="https://img.shields.io/badge/version-0.0.0-blue.svg?cacheSeconds=2592000" />
 </p>
 
+### Feature
+ * SPA site,
+ * Api Fetch,
+ * 404 page,
+ * Authentication,
+ * Responsive site,
+ * React,
+ * Firebase,
+ * Data Server
+ * Mongodb
+
+
+### Uses Framework and Library
+   * tailwindCss,
+   * daisyui
+   * firebase
+   * react,
+   * react-dom,
+   * react-icons,
+   * react-router-dom,
+   * react-Hook-From,
+   * react-Photo-View,
+   * react-toastify,
+   * readme-md-generator,
+   * Mongodb
+   * Node.Js
+
 ## Install
 
 ```sh
