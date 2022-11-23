@@ -11,10 +11,9 @@ const Home = () => {
     return (
         <div>
             <Hero></Hero>
-            <Featured></Featured>
             <Stats></Stats>
             <Clients></Clients>
-            <BlogList></BlogList>
+            <Testimonail></Testimonail>
           
         </div>
     );

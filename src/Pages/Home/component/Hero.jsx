@@ -22,12 +22,12 @@ const Hero = () => {
           <h1 className="text-5xl font-bold leading-none sm:text-6xl text-primary">Resell Market For
             <span className="text-accent"> Used Game</span> Console.
           </h1>
-          <p className="mt-6 mb-8 text-lg sm:mb-12">Dictum aliquam porta in condimentum ac integer
-            <br className="hidden md:inline lg:hidden" />turpis pulvinar, est scelerisque ligula sem
+          <p className="mt-6 mb-8 text-lg sm:mb-12">Find and buy unique products from thousands
+            <br className="hidden md:inline lg:hidden" /> of trusted, independent brands.
           </p>
           <div className="flex flex-col space-y-4 sm:items-center sm:justify-center sm:flex-row sm:space-y-0 sm:space-x-4 lg:justify-start">
-            <Link to={"/login"}>
-              <span className='btn-wide btn btn-primary text-white'> Get Started</span>
+            <Link to={"/register"}>
+              <span className='btn-wide btn btn-primary text-white capitalize '> Sign Up For Start Selling</span>
             
             </Link>
         
