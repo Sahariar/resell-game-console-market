@@ -1,13 +1,15 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useLoaderData } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 import TitleArea from '../../../component/Shared/TitleArea';
 import { Link } from 'react-router-dom';
 import Loading from '../../../component/Shared/Loading';
+import ModalBook from '../../../component/ModalBook/ModalBook';
 const Category = () => {
     const cateData = useLoaderData();
     const cateName =cateData.category;
     const nameLower = cateName.toLowerCase();
+    const [modalData , setModalData] = useState([])
 
     const url = `http://localhost:4000/products?category=${nameLower}`;
     const { data: cateProducts = [], isLoading ,refetch } = useQuery({
@@ -65,15 +67,16 @@ const Category = () => {
     </p>
      </div>
      <div className="flex font-bold justify-between items-start ">
-     
     
      </div>
      <div className="justify-center my-4">
-     <Link to={`/product/${item?._id}`} key={item?._id}> 
-     <span className='btn btn-primary btn-block text-white'> 
+     <label htmlFor="bookModal" className="btn btn-primary btn-block text-white"
+     onClick={()=> setModalData(item)}
+     >
+  
      Book Now
-     </span>
-     </Link>
+     
+     </label>
      </div>
  
      </div>
@@ -81,6 +84,13 @@ const Category = () => {
    </div>
       )
  }
+
+ <ModalBook 
+ modalData={modalData}
+ setModalData={setModalData}
+ >
+
+ </ModalBook>
    </div>
             </div>
         </section>
