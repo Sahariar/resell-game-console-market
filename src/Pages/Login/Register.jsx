@@ -50,7 +50,7 @@ const Register = () => {
 							const user = result.user;
 							console.log(user);
 							handleUserProfileUpdate(name, photoUrl );
-							saveUser(name, email, role)
+							saveUser(name, email, role , photoUrl)
 							// ...
 						})
 						.catch((error) => {
@@ -108,7 +108,8 @@ const Register = () => {
 				const user = result.user;
 				const name = user?.displayName;
 				const email=user?.email;
-				saveUser(name,email,role) 
+				const photoUrl=user?.photoUrl;
+				saveUser(name,email,role,photoUrl) 
 				toast.success("User Successfully Created");
 				
 				// ...
@@ -121,12 +122,13 @@ const Register = () => {
 				setError(errorMessage);
 			});
 	};
-	const saveUser = (name,email,role) =>{
+	const saveUser = (name,email,role,photoUrl) =>{
 
 		const user={
 			name,
 			email,
-			role
+			role,
+			photoUrl
 		}
 		const url =`http://localhost:4000/users`
 		fetch(url, {

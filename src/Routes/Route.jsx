@@ -77,7 +77,7 @@ export const route = createBrowserRouter([
                 element:<AddProduct />
             },
             {
-                path:"/dashboard/manageproduct",
+                path:"/dashboard/myproduct",
                 element:<ManageProduct />
             },
       ]

@@ -46,10 +46,9 @@ const Category = () => {
     <p>
     Post Created On: {item?.createdAt.slice(0,10)} 
     </p>
-    <p>
-    at : {item?.createdAt.slice(12,19)}
+    <p className=' pl-2' >
+   Used: {item?.usePeriodOfTime} Years
     </p>
-
      </div>
      <div className="flex font-bold justify-between items-start ">
      <p className=' pr-2' >
@@ -67,9 +66,7 @@ const Category = () => {
      </div>
      <div className="flex font-bold justify-between items-start ">
      
-    <p className=' pl-2' >
-   Used: {item?.usePeriodOfTime} Years
-    </p>
+    
      </div>
      <div className="justify-center my-4">
      <Link to={`/product/${item?._id}`} key={item?._id}> 

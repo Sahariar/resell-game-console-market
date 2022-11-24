@@ -19,29 +19,29 @@ const AdminAreaLayout = () => {
         <Header></Header>
         <div className="drawer drawer-mobile">
   <input id="user-dash-drawer" type="checkbox" className="drawer-toggle" />
-  <div className="drawer-content bg-accent/20 rounded-xl">
+  <div className="drawer-content  bg-secondary/10 rounded-xl">
   
   <Outlet></Outlet>
   
   </div> 
-  <div className="drawer-side z-10">
-   
-    <ul className="menu p-4 w-80 text-base-content bg-secondary/10 rounded-xl">
+  <div className="drawer-side">
+  <label htmlFor="user-dash-drawer" className="drawer-overlay"></label>
+    <ul className="menu p-4 w-80 text-base-content bg-accent/20 rounded-xl">
       <li><NavLink to={'/dashboard/orders'}> My orders</NavLink></li>
       {
       isAdmin && <>
        <li><NavLink to={'/dashboard/reportsitem'}> Reports Item</NavLink></li>
-       <li><NavLink to={'/dashboard/allsellers'}> All Seller Users</NavLink></li>
-       <li><NavLink to={'/dashboard/allbuyers'}> All Buyer Users</NavLink></li>
-       <li><NavLink to={'/dashboard/addproduct'}> Add Products</NavLink></li>
-       <li><NavLink to={'/dashboard/manageproduct'}> Manage Products</NavLink></li>
+       <li><NavLink to={'/dashboard/allsellers'}> All Seller </NavLink></li>
+       <li><NavLink to={'/dashboard/allbuyers'}> All Buyer </NavLink></li>
+       <li><NavLink to={'/dashboard/addproduct'}> Add Product</NavLink></li>
+       <li><NavLink to={'/dashboard/myproduct'}>My Product</NavLink></li>
       
        </>
       }
         {
       isSeller && <>
-       <li><NavLink to={'/dashboard/addproduct'}> Add Products</NavLink></li>
-       <li><NavLink to={'/dashboard/manageproduct'}> Manage Products</NavLink></li>
+        <li><NavLink to={'/dashboard/addproduct'}> Add Product</NavLink></li>
+       <li><NavLink to={'/dashboard/myproduct'}>My Product</NavLink></li>
        </>
       }
       
