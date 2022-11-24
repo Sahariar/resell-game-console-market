@@ -63,10 +63,9 @@ const Login = () => {
 
     return (
 		<section className="login-area mb-12">
-            <TitleArea>{"Log In"}</TitleArea>
-            <div className="container mx-auto">
+            <div className="container mx-auto py-10">
             <div className="flex">
-			<div className="w-6/12 max-w-md p-4 rounded-2xl shadow sm:p-8 mx-auto bg-blue-50">
+			<div className="w-6/12 max-w-md p-4 rounded-2xl shadow sm:p-8 mx-auto bg-secondary/10">
 				<h2 className="mb-3 text-3xl font-semibold text-center">
 					Log into your account
 				</h2>
@@ -128,7 +127,7 @@ const Login = () => {
 								/>
 							</div>
 
-							<input type="submit" value={"Log In"} className="btn btn-accent py-4" />
+							<input type="submit" value={"Log In"} className="btn btn-primary py-4" />
 						</form>
 			</div>
             </div>

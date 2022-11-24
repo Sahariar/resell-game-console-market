@@ -29,6 +29,13 @@ const Header = () => {
 	<li>
 	<NavLink to={"/blog"} className={'rounded-xl'}> Blog</NavLink>
 	</li>
+	{
+		user?.email &&
+	<li>
+	<NavLink to={"/dashboard"} className={'rounded-xl'}> Dashboard</NavLink>
+	</li>
+	}
+
 							
 							</>
 	return (
@@ -64,43 +71,17 @@ const Header = () => {
 				</div>
 				<div className="navbar-end">
 					{user?.email ? (
-						<div className="flex items-center">
-						<div className="user-info-area text-xl font-bold">
-							<h4>
-							Welcome, {user?.displayName}
-							</h4>
-						</div>
-						<div className="dropdown dropdown-end">
-							<label tabIndex={0} className="btn btn-ghost btn-circle avatar">
-								<div className="w-10 rounded-full">
-									<img src={user?.photoURL ? user?.photoURL : "https://placeimg.com/80/80/people"} />
-								</div>
-							</label>
-							<ul
-								tabIndex={0}
-								className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
-							>
-								<li>
-									<a className="justify-between">
-										Profile
-										<span className="badge">New</span>
-									</a>
-								</li>
-								<li>
-									<a>Settings</a>
-								</li>
-								<li onClick={handleLogOut}>
+						<div className="flex">
+					<div onClick={handleLogOut} className="btn btn-primary text-white">
 									<Link>Logout</Link>
-								</li>
-							</ul>
-							</div>
+					</div>
 						</div>
 					) : (
 						<div className="flex">
 							
 						<div className="auth-area">
 							<Link to={"/login"}>
-								<span className="btn btn-primary"> Login</span>{" "}
+								<span className="btn btn-primary text-white"> Login</span>
 							</Link>
 						</div>
 						</div>

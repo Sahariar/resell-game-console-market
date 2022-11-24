@@ -23,9 +23,11 @@ const Register = () => {
 	const [error, setError] = useState("");
 
 	const onSubmit = (data) => {
+		toast.info("From submitting")
 		const name = data.fullName;
 		const email = data.email;
 		const password = data.password;
+		const role = data.role;
 		const image = data.profileImg[0];
 
 		const formData = new FormData();
@@ -36,8 +38,7 @@ const Register = () => {
 		fetch(hostUrl, {
 			method: "POST",
 			body: formData,
-		})
-			.then((res) => res.json())
+		}).then((res) => res.json())
 			.then((imgData) => {
 				if (imgData.success) {
 					const photoUrl = imgData.data.url;
@@ -48,7 +49,8 @@ const Register = () => {
 							// Signed Up
 							const user = result.user;
 							console.log(user);
-							handleUserProfileUpdate(name, photoUrl);
+							handleUserProfileUpdate(name, photoUrl );
+							saveUser(name, email, role)
 							// ...
 						})
 						.catch((error) => {
@@ -87,6 +89,7 @@ const Register = () => {
 		userProfileUpdate(name, photoURL)
 			.then(() => {
 				// Profile updated!
+
 				toast.success("User Profile Created");
 				// ...
 			})
@@ -99,10 +102,15 @@ const Register = () => {
 	};
 
 	const handleGoogleSubmission = () => {
+		const role ="buyer"
 		logInWithGoogle()
 			.then((result) => {
 				const user = result.user;
+				const name = user?.displayName;
+				const email=user?.email;
+				saveUser(name,email,role) 
 				toast.success("User Successfully Created");
+				
 				// ...
 			})
 			.catch((error) => {
@@ -113,13 +121,37 @@ const Register = () => {
 				setError(errorMessage);
 			});
 	};
+	const saveUser = (name,email,role) =>{
 
+		const user={
+			name,
+			email,
+			role
+		}
+		const url =`http://localhost:4000/users`
+		fetch(url, {
+		method: 'POST',
+		headers: {
+		'Content-Type': 'application/json',
+		},
+		body: JSON.stringify(user),
+		})
+		.then((response) => response.json())
+		.then((data) => {
+		console.log('Success:', data);
+		
+		})
+		.catch((error) => {
+		console.error('Error:', error);
+		});
+	
+	}
 	return (
-		<section className="register-area mb-12">
-			 <TitleArea>{"Register"}</TitleArea>
+		<section className="register-area">
+			
 			<div className="container mx-auto">
 				<div className="flex">
-					<div className="w-6/12 max-w-md p-4 rounded-2xl shadow-2xl sm:p-8 mx-auto bg-violet-50">
+					<div className="w-7/12 p-4 rounded-2xl shadow-2xl sm:p-8 mx-auto bg-secondary/10 my-10">
 						<h2 className="mb-3 text-3xl font-semibold text-center">
 							Register your account
 						</h2>
@@ -157,6 +189,7 @@ const Register = () => {
 							onSubmit={handleSubmit(onSubmit)}
 							className="flex flex-col mx-auto space-y-6 px-6"
 						>
+							<div className="grid grid-cols-6 gap-4 col-span-full lg:col-span-3">
 							<div className="col-span-full sm:col-span-3">
 								<label htmlFor="fullName" className="w-full">
 									Full Name
@@ -167,7 +200,8 @@ const Register = () => {
 									className="input input-bordered w-full"
 								/>
 							</div>
-							<div className="col-span-full sm:col-span-3 ">
+						
+							<div className="col-span-full sm:col-span-3">
 								<label htmlFor="profileImg" className="w-full">
 									Profile Image
 								</label>
@@ -177,12 +211,13 @@ const Register = () => {
 										required: "profile image is Required",
 									})}
 									type="file"
-									className="file-input file-input-bordered w-full max-w-xs"
+									className="file-input file-input-bordered w-full"
 								/>
 								{/* {errors.profileImg && (
 										<span className="text-error">Image is Required</span>
 									)} */}
 							</div>
+				
 							<div className="col-span-full sm:col-span-3">
 								<label htmlFor="email" className="w-full">
 									Email
@@ -190,7 +225,9 @@ const Register = () => {
 								<input
 									placeholder="bluebill1049@hotmail.com"
 									type="email"
-									{...register("email")}
+									{...register("email", {
+										required: "email is Required",
+									})}
 									className="input input-bordered w-full "
 								/>
 							</div>
@@ -201,12 +238,31 @@ const Register = () => {
 								<input
 									placeholder="****"
 									type="password"
-									{...register("password")}
-									className="input input-bordered w-full "
+									{...register("password", {
+										required: "profile image is Required",
+										})}
+									className="input input-bordered w-full"
 								/>
 							</div>
-
-							<input type="submit" value={"Register"} className="btn btn-accent py-4" />
+							<div className="col-span-full">
+							<div className="form-control w-full">
+									<label className="label" htmlFor="role">
+										<span className="label-text">Buyer Or Seller</span>
+									</label>
+									<select className="select select-bordered" defaultValue={'buyer'}
+									{...register("role" , {
+										required: "User Role is Required",
+									})}
+									>
+										<option value={'buyer'}>Buyer</option>
+										<option value={'seller'}>Seller</option>
+										
+									</select>
+									
+									</div>
+							</div>
+							</div>
+							<input type="submit" value={"Register"} className="w-1/2 btn btn-primary py-4 mx-auto" />
 						</form>
 					</div>
 				</div>

@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
 import { Navigate, useLocation } from 'react-router-dom';
+import Loading from '../../component/Shared/Loading';
 import { AuthContext } from '../../context/AuthProvider';
 
 const PrivateRoutes = ({children}) => {
@@ -8,9 +9,9 @@ const PrivateRoutes = ({children}) => {
     const location = useLocation();
 
     if( loading){
-        return <> <h1 className='text6xl'> 
-            This is a Loading area.
-        </h1></>
+        return <> 
+        <Loading></Loading>
+        </>
     } 
 
     if( !user){
