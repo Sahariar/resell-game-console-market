@@ -1,4 +1,5 @@
 import React from "react";
+import Logo from "./Logo";
 
 const Footer = () => {
 	return (
@@ -31,13 +32,8 @@ const Footer = () => {
 				<div className="lg:flex">
 					<div className="w-full -mx-6 lg:w-2/5">
 						<div className="px-6">
-							<div>
-								<a
-									href="#"
-									className="text-xl font-bold text-gray-800 dark:text-white hover:text-gray-700 dark:hover:text-gray-300"
-								>
-									Brand
-								</a>
+							<div className="bg-white w-80 rounded-md">
+							<Logo></Logo>
 							</div>
 
 							<p className="max-w-sm mt-2 text-gray-500 dark:text-gray-400">
