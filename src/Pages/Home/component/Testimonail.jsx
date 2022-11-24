@@ -26,7 +26,7 @@ const Testimonail = () => {
 					>
 						<path d="M13 11c.6 0 1-.4 1-1s-.4-1-1-1c-5 0-9 4-9 9 0 2.8 2.2 5 5 5s5-2.2 5-5-2.2-5-5-5c-.3 0-.7 0-1 .1 1.3-1.3 3-2.1 5-2.1zM23 13c-.3 0-.7 0-1 .1 1.3-1.3 3-2.1 5-2.1.6 0 1-.4 1-1s-.4-1-1-1c-5 0-9 4-9 9 0 2.8 2.2 5 5 5s5-2.2 5-5-2.2-5-5-5z"></path>
 					</svg>{" "}
-					<h2 className="text-3xl font-bold tracking-tight text-center sm:text-5xl ">
+					<h2 className="text-3xl text-primary font-bold tracking-tight text-center sm:text-5xl ">
 						Testimonials
 					</h2>
 					<svg
@@ -58,7 +58,7 @@ const Testimonail = () => {
 				className="mySwiper "
 			>
 				<SwiperSlide>
-					<div className="slide-item text-primary flex flex-col items-center justify-center space-y-4 pb-14">
+					<div className="slide-item flex flex-col items-center justify-center space-y-4 pb-14">
 						<p className="px-6 py-2 text-2xl font-semibold text-center sm:font-bold sm:text-3xl md:text-4xl lg:max-w-2xl xl:max-w-4xl">
 							"Working In Resell Game Console Market has been an awesome experience. Tying wholesale right into my website for me to control, I love it. It’s seamless."
 						</p>
@@ -76,7 +76,7 @@ const Testimonail = () => {
 					</div>
 				</SwiperSlide>
 				<SwiperSlide>
-					<div className="slide-item text-primary flex flex-col items-center justify-center space-y-4 pb-14">
+					<div className="slide-item flex flex-col items-center justify-center space-y-4 pb-14">
 						<p className="px-6 py-2 text-2xl font-semibold text-center sm:font-bold sm:text-3xl md:text-4xl lg:max-w-2xl xl:max-w-4xl">
 							"Resell Game Console Market ticked all our boxes. We found gorgeously colorful, handmade products, and a great selection of products by People of Color. The buying process was streamlined and simple."
 						</p>
@@ -94,7 +94,7 @@ const Testimonail = () => {
 					</div>
 				</SwiperSlide>
 				<SwiperSlide>
-					<div className="slide-item text-primary flex flex-col items-center justify-center space-y-4">
+					<div className="slide-item flex flex-col items-center justify-center space-y-4">
 						<p className="px-6 py-2 text-2xl font-semibold text-center sm:font-bold sm:text-3xl md:text-4xl lg:max-w-2xl xl:max-w-4xl">
 							"Veniam quidem animi ea maxime odit fugiat architecto perferendis
 							ipsum perspiciatis iusto, provident qui nam dolorum corporis."
@@ -113,7 +113,7 @@ const Testimonail = () => {
 					</div>
 				</SwiperSlide>
 				<SwiperSlide>
-					<div className="slide-item text-primary flex flex-col items-center justify-center space-y-4 p-14">
+					<div className="slide-item flex flex-col items-center justify-center space-y-4 p-14">
 						<p className="px-6 py-2 text-2xl font-semibold text-center sm:font-bold sm:text-3xl md:text-4xl lg:max-w-2xl xl:max-w-4xl">
 							"I just wanted to share a quick note and let you know that you guys do a really good job. It’s really great how easy your websites are to update and manage. I never have any problem at all."
 						</p>

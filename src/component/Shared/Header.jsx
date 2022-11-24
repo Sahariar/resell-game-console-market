@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useLoaderData } from "react-router-dom";
 import { AuthContext } from "../../context/AuthProvider";
 import Logo from "./Logo";
 
@@ -12,10 +12,20 @@ const Header = () => {
 				console.error(error);
 			});
 	};
+
+	const category = useLoaderData();
+	
+
 	const navList = <>
 	<li>
 	<NavLink to={"/home"} className={'rounded-xl'}> Home</NavLink>
 	</li>
+	{ 
+	category.length > 0 && 
+		category.map( cate => <li key={cate._id}>
+			<NavLink to={`/product/category/${cate._id}`} className={'rounded-xl'}> {cate.category}</NavLink>
+			</li> )
+	}
 	<li>
 	<NavLink to={"/blog"} className={'rounded-xl'}> Blog</NavLink>
 	</li>

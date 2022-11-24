@@ -18,7 +18,7 @@ const Hero = () => {
     return (
       <section className="bg-secondary/10 py-20">
       <div className="container flex flex-col justify-center p-6 mx-auto sm:py-12 lg:py-24 lg:flex-row lg:justify-between">
-        <div className="flex flex-col justify-center pr-6 text-center rounded-sm lg:max-w-md xl:max-w-xl lg:text-left">
+        <div className="flex flex-col justify-center pr-6 py-10 text-center rounded-sm lg:max-w-md xl:max-w-xl lg:text-left">
           <h1 className="text-5xl font-bold leading-none sm:text-6xl text-primary">Resell Market For
             <span className="text-accent"> Used Game</span> Console.
           </h1>

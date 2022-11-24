@@ -11,11 +11,13 @@ import PrivateRoutes from "./PrivateRoutes/PrivateRoutes";
 export const route = createBrowserRouter([
     { 
         path:'/',
+        loader: async() => fetch(`http://localhost:4000/products/category`),
         element: <Root></Root>,
         children:[
             {
                 path:'/',
                 element:<Home></Home>
+
             },
             {
                 path:"/home",

@@ -182,7 +182,7 @@ const Footer = () => {
 
 					<div className="py-4">
 						<p className="text-center text-gray-500 dark:text-gray-400">
-							Copyright © Brand 2022 - All rights reserved
+							Copyright © Resell Gaming Console 2022 - All rights reserved
 						</p>
 					</div>
 				</div>

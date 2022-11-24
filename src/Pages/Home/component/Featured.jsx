@@ -1,67 +1,55 @@
 import React from 'react';
-
-const Featured = () => {
+import { Swiper } from 'swiper/react';
+import { SwiperSlide } from 'swiper/react';
+import "swiper/css";
+import "swiper/css/pagination";
+import "swiper/css/navigation";
+import { Pagination, Navigation } from "swiper";
+import { Link } from 'react-router-dom';
+const Featured = ({advertise , refetch , isLoading }) => {
+    
     return (
-        <section className="bg-secondary/50">
+        <section className="py-10">
         <div className="container py-12 mx-auto space-y-24">
             <div>
-                <h2 className="text-3xl font-bold tracking-tight text-center sm:text-5xl ">Aliquip definiebas ad est</h2>
-                <p className="max-w-3xl mx-auto mt-4 text-xl text-center ">Quando cetero his ne, eum admodum sapientem ut.</p>
+                <h2 className="text-3xl font-bold tracking-tight text-center sm:text-5xl text-primary">Advertised Products</h2>
+                <p className="max-w-3xl mx-auto mt-4 text-xl text-center ">Our Best Products For you to Grab</p>
             </div>
-    
-            <div>
-                <div className="grid lg:gap-8 lg:grid-cols-2 lg:items-center">
-                    <div className="lg:col-start-2">
-                        <h3 className="text-2xl font-bold tracking-tight sm:text-3xl ">Eam nibh gloriatur ex</h3>
-                        <p className="mt-3 text-lg ">Per odio fabellas consulatu cu. Utroque detracto mel ea, quo te latine theophrastus. Ea his tale nibh dissentias, mei exerci tamquam euripidis cu.</p>
-                        <div className="mt-12 space-y-12">
-                            <div className="flex">
-                                <div className="flex-shrink-0">
-                                    <div className="flex items-center justify-center w-12 h-12 rounded-md dark:bg-violet-400 dark:text-gray-900">
-                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="w-7 h-7">
-                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path>
-                                        </svg>
-                                    </div>
-                                </div>
-                                <div className="ml-4">
-                                    <h4 className="text-lg font-medium leading-6 ">Cibo augue offendit has ad</h4>
-                                    <p className="mt-2 ">An per velit appellantur, ut utinam minimum nominavi sit, odio nostro habemus ne nec. Ne sonet regione contentiones est.</p>
-                                </div>
-                            </div>
-                            <div className="flex">
-                                <div className="flex-shrink-0">
-                                    <div className="flex items-center justify-center w-12 h-12 rounded-md dark:bg-violet-400 dark:text-gray-900">
-                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="w-7 h-7">
-                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path>
-                                        </svg>
-                                    </div>
-                                </div>
-                                <div className="ml-4">
-                                    <h4 className="text-lg font-medium leading-6 ">At eum ferri luptatum lobortis</h4>
-                                    <p className="mt-2 ">Te per quidam maiorum ocurreret, etiam delicatissimi usu ad. Ne has quod periculis. Te sit primis iisque efficiantur.</p>
-                                </div>
-                            </div>
-                            <div className="flex">
-                                <div className="flex-shrink-0">
-                                    <div className="flex items-center justify-center w-12 h-12 rounded-md dark:bg-violet-400 dark:text-gray-900">
-                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="w-7 h-7">
-                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path>
-                                        </svg>
-                                    </div>
-                                </div>
-                                <div className="ml-4">
-                                    <h4 className="text-lg font-medium leading-6 ">Dicunt verterem evertitur eu sea</h4>
-                                    <p className="mt-2 ">Audire principes rationibus eam an, autem nominavi luptatum per te. Sumo fabulas vim eu, sonet saperet eleifend ut vix.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="mt-10 lg:mt-0 lg:col-start-1 lg:row-start-1">
-                        <img src="https://source.unsplash.com/random/361x481" alt="" className="mx-auto rounded-lg shadow-lg dark:bg-gray-500" />
-                    </div>
+            <Swiper
+				slidesPerView={4}
+				spaceBetween={30}
+				loop={true}
+				pagination={{
+					clickable: true,
+				}}
+				navigation={true}
+				modules={[Pagination, Navigation]}
+				className="mySwiper "
+			>
+
+        {
+            advertise.map(product => <SwiperSlide key={product._id}>
+                <div className="slide-item rounded-xl shadow-sm flex flex-col items-center justify-center p-8 space-y-4 bg-white min-h-96 mb-10">
+                    
+                    <figure>
+                        <img src={product.img} alt={product.name}  className="rounded-xl h-48"/>
+                    </figure>
+                    <p className="px-6 py-2 text-lg font-semibold text-center sm:font-bold lg:max-w-2xl xl:max-w-4xl">
+                        {product.name}
+                    </p>
+                    <Link to={`/product/category/${product._id}`}> 
+                    <span className='btn btn-primary btn-wide text-white' >Book Now</span>
+                    </Link>
+                   
                 </div>
-            </div>
-        </div>
+            </SwiperSlide>)
+        }
+           				
+
+
+
+			</Swiper>         
+                </div>
     </section>
     );
 };
