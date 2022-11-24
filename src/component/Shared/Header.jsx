@@ -2,6 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import React, { useContext } from "react";
 import { Link, NavLink, useLoaderData } from "react-router-dom";
 import { AuthContext } from "../../context/AuthProvider";
+import Loading from "./Loading";
 import Logo from "./Logo";
 
 const Header = () => {
@@ -16,7 +17,7 @@ const Header = () => {
 
 	 const url =`http://localhost:4000/products/category`
 	
-	 const { data: category = [] } = useQuery({
+	 const { data: category = [], isLoading , refetch} = useQuery({
 	 queryKey: ['category'],
 	 queryFn: async () => {
 	 const res = await fetch(url);
@@ -24,7 +25,9 @@ const Header = () => {
 	 return data;
 	 }
 	 })
-
+	 if(isLoading){
+		return <Loading></Loading>
+	 }
 	const navList = <>
 	<li>
 	<NavLink to={"/home"} className={'rounded-xl'}> Home</NavLink>
