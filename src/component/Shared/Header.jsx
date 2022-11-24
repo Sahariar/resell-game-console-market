@@ -16,6 +16,9 @@ const Header = () => {
 	<li>
 	<NavLink to={"/home"} className={'rounded-xl'}> Home</NavLink>
 	</li>
+	<li>
+	<NavLink to={"/blog"} className={'rounded-xl'}> Blog</NavLink>
+	</li>
 							
 							</>
 	return (
