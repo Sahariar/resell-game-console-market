@@ -2,8 +2,8 @@ import React from 'react';
 
 const Loading = () => {
     return (
-        <div className="flex flex-col m-8 rounded shadow-md animate-pulse h-96">
-        <div className="h-48 rounded-t bg-accent/20">
+        <div className="flex flex-col m-8 rounded shadow-md animate-pulse min-h-screen bg-accent/20">
+        <div className="h-48 rounded-t ">
             <div className="w-80 mx-auto my-12">
             <h2 className='text-5xl flex'>L<span>
             <svg
