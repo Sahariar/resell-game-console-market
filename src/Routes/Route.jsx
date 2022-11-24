@@ -7,6 +7,7 @@ import Allbuyers from "../Pages/Dashboad/Allbuyers";
 import AllSeller from "../Pages/Dashboad/AllSeller";
 import Dashboard from "../Pages/Dashboad/Dashboard";
 import Orders from "../Pages/Dashboad/Orders";
+import Payment from "../Pages/Dashboad/Payment";
 import ReportsItem from "../Pages/Dashboad/ReportsItem";
 import ErrorElement from "../Pages/ErrorElement/ErrorElement";
 import Home from "../Pages/Home/Home";
@@ -79,6 +80,11 @@ export const route = createBrowserRouter([
             {
                 path:"/dashboard/myproduct",
                 element:<ManageProduct />
+            },
+            {
+                path:"/dashboard/payment/:id",
+                loader: ({params}) => fetch(`http://localhost:4000/bookings/${params.id}`),
+                element:<Payment></Payment>
             },
       ]
     },
