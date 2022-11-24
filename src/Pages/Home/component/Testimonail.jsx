@@ -62,11 +62,11 @@ const Testimonail = () => {
 						<p className="px-6 py-2 text-2xl font-semibold text-center sm:font-bold sm:text-3xl md:text-4xl lg:max-w-2xl xl:max-w-4xl">
 							"Working In Resell Game Console Market has been an awesome experience. Tying wholesale right into my website for me to control, I love it. It’s seamless."
 						</p>
-						<div className="flex justify-center space-x-3">
+						<div className="flex flex-col justify-center  items-center space-y-3">
 							<img
 								src="https://randomuser.me/api/portraits/women/55.jpg"
 								alt=""
-								className="w-10 h-10 bg-center bg-cover rounded-full dark:bg-gray-500 dark:bg-gray-700"
+								className="w-24 h-24 bg-center bg-cover rounded-full"
 							/>
 							<div>
 								<p className="leading-tight">—Kristin Hinrichs, </p>
@@ -80,11 +80,11 @@ const Testimonail = () => {
 						<p className="px-6 py-2 text-2xl font-semibold text-center sm:font-bold sm:text-3xl md:text-4xl lg:max-w-2xl xl:max-w-4xl">
 							"Resell Game Console Market ticked all our boxes. We found gorgeously colorful, handmade products, and a great selection of products by People of Color. The buying process was streamlined and simple."
 						</p>
-						<div className="flex justify-center space-x-3">
+						<div className="flex flex-col justify-center  items-center space-y-3">
 							<img
 								src="https://randomuser.me/api/portraits/women/65.jpg"
 								alt=""
-								className="w-10 h-10 bg-center bg-cover rounded-full dark:bg-gray-500 dark:bg-gray-700"
+								className="w-24 h-24 bg-center bg-cover rounded-full"
 							/>
 							<div>
 								<p className="leading-tight">—Kristin Van Buskirk </p>
@@ -99,11 +99,11 @@ const Testimonail = () => {
 							"Veniam quidem animi ea maxime odit fugiat architecto perferendis
 							ipsum perspiciatis iusto, provident qui nam dolorum corporis."
 						</p>
-						<div className="flex justify-center space-x-3">
+						<div className="flex flex-col justify-center  items-center space-y-3">
 							<img
 								src="https://randomuser.me/api/portraits/women/95.jpg"
 								alt=""
-								className="w-10 h-10 bg-center bg-cover rounded-full dark:bg-gray-500 dark:bg-gray-700"
+								className="w-24 h-24 bg-center bg-cover rounded-full"
 							/>
 							<div>
 								<p className="leading-tight">Leroy Jenkins</p>
@@ -117,11 +117,11 @@ const Testimonail = () => {
 						<p className="px-6 py-2 text-2xl font-semibold text-center sm:font-bold sm:text-3xl md:text-4xl lg:max-w-2xl xl:max-w-4xl">
 							"I just wanted to share a quick note and let you know that you guys do a really good job. It’s really great how easy your websites are to update and manage. I never have any problem at all."
 						</p>
-						<div className="flex justify-center space-x-3">
+						<div className="flex flex-col justify-center  items-center space-y-3">
 							<img
 								src="https://randomuser.me/api/portraits/women/85.jpg"
 								alt=""
-								className="w-10 h-10 bg-center bg-cover rounded-full dark:bg-gray-500 dark:bg-gray-700"
+								className="w-24 h-24 bg-center bg-cover rounded-full"
 							/>
 							<div>
 								<p className="leading-tight">Leroy Jenkins</p>
