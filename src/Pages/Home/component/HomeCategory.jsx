@@ -23,11 +23,11 @@ const HomeCategory = () => {
                 <h2 className="text-3xl font-bold tracking-tight text-center sm:text-5xl text-primary">Game Console Category</h2>
                 <p className="max-w-3xl mx-auto mt-4 text-xl text-center ">You can find most Popular Brands in our Collection</p>
             </div>
-            <div className="grid lg:grid-cols-4 grid-cols-2 px-6 xl:grid-cols-5 gap-4">
+            <div className="grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1 mx-auto px-6 xl:grid-cols-5 gap-4">
  
             {
                 productCate.map(cate => <Link to={`/product/category/${cate._id}`} key={cate._id}>
-                <div className="card w-80 h-80 lg:w-60 lg:h-60 shadow-xl bg-primary " >
+                <div className="card  h-80 lg:w-60 lg:h-60 shadow-xl bg-primary " >
                 <figure><img src={cate.catImg} alt={cate.category} /></figure>
                 
                 <div className="card-body flex items-center justify-center">

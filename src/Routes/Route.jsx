@@ -1,19 +1,28 @@
 import React from "react";
 import { createBrowserRouter } from "react-router-dom";
+import AdminAreaLayout from "../Layout/AdminAreaLayout";
 import Root from "../Layout/Root";
 import Blog from "../Pages/Blog/Blog";
+import Allbuyers from "../Pages/Dashboad/Allbuyers";
+import AllSeller from "../Pages/Dashboad/AllSeller";
+import Dashboard from "../Pages/Dashboad/Dashboard";
+import Orders from "../Pages/Dashboad/Orders";
+import ReportsItem from "../Pages/Dashboad/ReportsItem";
+import ErrorElement from "../Pages/ErrorElement/ErrorElement";
 import Home from "../Pages/Home/Home";
 import Login from "../Pages/Login/Login";
 import Register from "../Pages/Login/Register";
 import NotFound from "../Pages/NotFound/NotFound";
+import AddProduct from "../Pages/Prodcuts/AddProduct";
 import Category from "../Pages/Prodcuts/Category/Category";
+import ManageProduct from "../Pages/Prodcuts/ManageProduct";
 import PrivateRoutes from "./PrivateRoutes/PrivateRoutes";
 
 export const route = createBrowserRouter([
     { 
         path:'/',
-        loader: async() => fetch(`http://localhost:4000/products/category`),
         element: <Root></Root>,
+        errorElement:<ErrorElement></ErrorElement>,
         children:[
             {
                 path:'/',
@@ -43,6 +52,35 @@ export const route = createBrowserRouter([
             },
 
         ]
+    },{
+        path:'/dashboard',
+        element:<AdminAreaLayout></AdminAreaLayout>,
+        children:[
+            {
+                path:"/dashboard/orders",
+                element:<Orders />
+            },
+            {
+                path:"/dashboard/reportsitem",
+                element:<ReportsItem />
+            },
+            {
+                path:"/dashboard/allsellers",
+                element:<AllSeller />
+            },
+            {
+                path:"/dashboard/allbuyers",
+                element:<Allbuyers />
+            },
+            {
+                path:"/dashboard/addproduct",
+                element:<AddProduct />
+            },
+            {
+                path:"/dashboard/manageproduct",
+                element:<ManageProduct />
+            },
+      ]
     },
     {
         path:'*',

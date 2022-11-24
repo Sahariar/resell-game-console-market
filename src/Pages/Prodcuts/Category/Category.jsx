@@ -30,7 +30,7 @@ const Category = () => {
             <TitleArea>{cateData.category}</TitleArea>
             
             <div className="container mx-auto my-20">
-            <div className="grid lg:grid-cols-3 grid-cols-2 px-6 gap-14">
+            <div className="grid lg:grid-cols-3 grid-cols-1 md:grid-cols-2 px-6 gap-14">
  
  {
      cateProducts.map(item => <div className="card shadow-xl min-h-96 bg-white/20" key={item?._id}>
