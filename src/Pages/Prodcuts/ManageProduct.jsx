@@ -52,7 +52,7 @@ const ManageProduct = () => {
         <th>Name</th>
         <th>In Stock</th>
         <th>Add To Advertisement</th>
-        <th>Delete</th>
+        <th>Is Stock</th>
       </tr>
     </thead>
     <tbody>
