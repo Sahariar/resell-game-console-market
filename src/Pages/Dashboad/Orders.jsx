@@ -6,6 +6,7 @@ import { AuthContext } from "../../context/AuthProvider";
 
 const Orders = () => {
 	const { user } = useContext(AuthContext);
+  
 	const url = `http://localhost:4000/bookings?email=${user?.email}`;
 	const {
 		data: bookings = [],
@@ -14,7 +15,11 @@ const Orders = () => {
 	} = useQuery({
 		queryKey: ["bookings", user?.email],
 		queryFn: async () => {
-			const res = await fetch(url, {});
+			const res = await fetch(url, {
+        headers: {
+        authorization: `bearer ${localStorage.getItem('accessUserToken')}`
+        }
+      });
 			const data = await res.json();
 			return data;
 		},
@@ -22,6 +27,7 @@ const Orders = () => {
 	if (isLoading) {
 		return <Loading></Loading>;
 	}
+
 
 	return (
         <section className='mx-auto w-10/12 my-10' >

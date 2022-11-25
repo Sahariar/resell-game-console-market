@@ -25,7 +25,7 @@ const AddProduct = () => {
     return (
         <section className='add-room-area'>
         <div className="title-area p-10">
-            <h2 className="text-5xl">
+            <h2 className="text-5xl text-center">
                 Add Product
             </h2>
         </div>

@@ -4,22 +4,28 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import TitleArea from "../../component/Shared/TitleArea";
 import { AuthContext } from "../../context/AuthProvider";
+import UseToken from "../../hook/useToken";
 
 const Login = () => {
     
+	
+    const {logInWithGoogle, logInUserWithEmail} = useContext(AuthContext);
+    const [notification , setNotification] = useState(''); 
+    const [error , setError] = useState(''); 
+	const [loginUserEmail,setLoginUserEmail] = useState('');
+	const [token] =UseToken(loginUserEmail)
+    const navigate = useNavigate();
+    const location = useLocation();
+    const from = location.state?.from?.pathname || "/"; 
 	const {
 		register,
 		handleSubmit,
 		formState: { errors },
 		reset,
 	} = useForm();
-    const {logInWithGoogle, logInUserWithEmail} = useContext(AuthContext);
-    const [notification , setNotification] = useState(''); 
-    const [error , setError] = useState(''); 
-    const navigate = useNavigate();
-    const location = useLocation();
-    const from = location.state?.from?.pathname || "/"; 
-
+	if(token){
+		navigate(from, { replace: true })
+	}
     console.log(from);
 	const onSubmit = (data) => {
 		const email = data.email;
@@ -28,12 +34,13 @@ const Login = () => {
         .then((result) => {
             // Signed in 
             const user = result.user;
+			setLoginUserEmail(email)
 			toast.success("User Log In Successfully");
             setError('')
             reset();
             console.log(user);
 
-            navigate(from, { replace: true });
+           
             // ...
           })
           .catch((error) => {
@@ -44,11 +51,12 @@ const Login = () => {
           });
 		
 	};
+
     const handleGoogleSubmission = () => {
         logInWithGoogle()
         .then((result) => {
             const user = result.user;
-            navigate(from, { replace: true });
+			setLoginUserEmail(user?.email)
             // ...
           }).catch((error) => {
             // Handle Errors here.
@@ -65,7 +73,7 @@ const Login = () => {
 		<section className="login-area mb-12">
             <div className="container mx-auto py-10">
             <div className="flex">
-			<div className="w-6/12 max-w-md p-4 rounded-2xl shadow sm:p-8 mx-auto bg-secondary/10">
+			<div className="lg:w-6/12 lg:max-w-md p-4 rounded-2xl shadow sm:p-8 mx-auto bg-secondary/10">
 				<h2 className="mb-3 text-3xl font-semibold text-center">
 					Log into your account
 				</h2>

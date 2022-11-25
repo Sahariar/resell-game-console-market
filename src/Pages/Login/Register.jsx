@@ -1,9 +1,11 @@
+import { ErrorMessage } from "@hookform/error-message";
+import axios from "axios";
 import React, { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import TitleArea from "../../component/Shared/TitleArea";
 import { AuthContext } from "../../context/AuthProvider";
+import UseToken from "../../hook/useToken";
 
 const Register = () => {
 	const {
@@ -12,6 +14,7 @@ const Register = () => {
 		formState: { errors },
 		reset,
 	} = useForm();
+
 	const imageHostKey = import.meta.env.VITE_IMGBB_KEY;
 	const {
 		logInWithGoogle,
@@ -21,9 +24,17 @@ const Register = () => {
 	} = useContext(AuthContext);
 	const [notification, setNotification] = useState("");
 	const [error, setError] = useState("");
+	const [cratedUserEmail,setCratedUserEmail] = useState('');
+	const [token] =UseToken(cratedUserEmail)
+	const navigate = useNavigate();
+
+	if(token){
+		navigate('/')
+	}
+
 
 	const onSubmit = (data) => {
-		toast.info("From submitting")
+		toast.info("From submitting");
 		const name = data.fullName;
 		const email = data.email;
 		const password = data.password;
@@ -38,7 +49,8 @@ const Register = () => {
 		fetch(hostUrl, {
 			method: "POST",
 			body: formData,
-		}).then((res) => res.json())
+		})
+			.then((res) => res.json())
 			.then((imgData) => {
 				if (imgData.success) {
 					const photoUrl = imgData.data.url;
@@ -49,8 +61,8 @@ const Register = () => {
 							// Signed Up
 							const user = result.user;
 							console.log(user);
-							handleUserProfileUpdate(name, photoUrl );
-							saveUser(name, email, role , photoUrl)
+							handleUserProfileUpdate(name, photoUrl);
+							saveUser(name, email, role, photoUrl);
 							// ...
 						})
 						.catch((error) => {
@@ -102,16 +114,16 @@ const Register = () => {
 	};
 
 	const handleGoogleSubmission = () => {
-		const role ="buyer"
+		const role = "buyer";
 		logInWithGoogle()
 			.then((result) => {
 				const user = result.user;
 				const name = user?.displayName;
-				const email=user?.email;
-				const photoUrl=user?.photoUrl;
-				saveUser(name,email,role,photoUrl) 
+				const email = user?.email;
+				const photoUrl = user?.photoUrl;
+				saveUser(name, email, role, photoUrl);
 				toast.success("User Successfully Created");
-				
+
 				// ...
 			})
 			.catch((error) => {
@@ -122,38 +134,32 @@ const Register = () => {
 				setError(errorMessage);
 			});
 	};
-	const saveUser = (name,email,role,photoUrl) =>{
-
-		const user={
+	const saveUser = (name, email, role, photoUrl) => {
+		const user = {
 			name,
 			email,
 			role,
-			photoUrl
-		}
-		const url =`http://localhost:4000/users`
-		fetch(url, {
-		method: 'POST',
-		headers: {
-		'Content-Type': 'application/json',
-		},
-		body: JSON.stringify(user),
-		})
-		.then((response) => response.json())
-		.then((data) => {
-		console.log('Success:', data);
-		
-		})
-		.catch((error) => {
-		console.error('Error:', error);
-		});
-	
-	}
+			photoUrl,
+		};
+
+		axios.post("http://localhost:4000/users",user)
+			.then(function (response) {
+				console.log(response);
+				if(response.data.acknowledged){
+					toast.success('User Saved to DataBase Successfully')
+					setCratedUserEmail(email)
+				}
+			})
+			.catch(function (error) {
+				console.log(error);
+				toast.error(error)
+			});
+	};
 	return (
 		<section className="register-area">
-			
 			<div className="container mx-auto">
 				<div className="flex">
-					<div className="w-7/12 p-4 rounded-2xl shadow-2xl sm:p-8 mx-auto bg-secondary/10 my-10">
+					<div className="lg:w-7/12 p-4 rounded-2xl shadow-2xl sm:p-8 mx-auto bg-secondary/10 my-10">
 						<h2 className="mb-3 text-3xl font-semibold text-center">
 							Register your account
 						</h2>
@@ -187,7 +193,124 @@ const Register = () => {
 							<p className="px-3  ">OR</p>
 							<hr className="w-full" />
 						</div>
+						<form
+							onSubmit={handleSubmit(onSubmit)}
+							className="flex flex-col mx-auto space-y-6 px-6"
+						>
+							<div className="grid grid-cols-6 gap-4 col-span-full lg:col-span-3">
+								<div className="col-span-full sm:col-span-3">
+									<label htmlFor="fullName" className="w-full">
+										Full Name
+									</label>
+									<input
+										placeholder="bill"
+										{...register("fullName", {
+											required: "FullName is Required",
+										})}
+										className="input input-bordered w-full"
+									/>
+									<ErrorMessage
+										errors={errors}
+										name="fullName"
+										render={({ message }) => (
+											<p className="text-error">{message}</p>
+										)}
+									/>
+								</div>
 
+								<div className="col-span-full sm:col-span-3">
+									<label htmlFor="profileImg" className="w-full">
+										Profile Image
+									</label>
+
+									<input
+										{...register("profileImg", {
+											required: "Profile image is Required",
+										})}
+										type="file"
+										className="file-input file-input-bordered w-full"
+									/>
+									<ErrorMessage
+										errors={errors}
+										name="profileImg"
+										render={({ message }) => (
+											<p className="text-error">{message}</p>
+										)}
+									/>
+									{/* {errors.profileImg && (
+										<span className="text-error">Image is Required</span>
+									)} */}
+								</div>
+
+								<div className="col-span-full sm:col-span-3">
+									<label htmlFor="email" className="w-full">
+										Email
+									</label>
+									<input
+										placeholder="bluebill1049@hotmail.com"
+										type="email"
+										{...register("email", {
+											required: "email is Required",
+										})}
+										className="input input-bordered w-full "
+									/>
+									<ErrorMessage
+										errors={errors}
+										name="email"
+										render={({ message }) => (
+											<p className="text-error">{message}</p>
+										)}
+									/>
+								</div>
+								<div className="col-span-full sm:col-span-3">
+									<label htmlFor="password" className="w-full">
+										Password
+									</label>
+									<input
+										placeholder="****"
+										type="password"
+										{...register("password", {
+											required: "You must specify a password",
+											minLength: {
+												value: 8,
+												message: "Password must have at least 8 characters",
+											},
+										})}
+										className="input input-bordered w-full"
+									/>
+
+									<ErrorMessage
+										errors={errors}
+										name="password"
+										render={({ message }) => (
+											<p className="text-error">{message}</p>
+										)}
+									/>
+								</div>
+								<div className="col-span-full">
+									<div className="form-control w-full">
+										<label className="label" htmlFor="role">
+											<span className="label-text">Buyer Or Seller</span>
+										</label>
+										<select
+											className="select select-bordered"
+											defaultValue={"buyer"}
+											{...register("role", {
+												required: "User Role is Required",
+											})}
+										>
+											<option value={"buyer"}>Buyer</option>
+											<option value={"seller"}>Seller</option>
+										</select>
+									</div>
+								</div>
+							</div>
+							<input
+								type="submit"
+								value={"Register"}
+								className="w-1/2 btn btn-primary py-4 mx-auto"
+							/>
+						</form>
 					</div>
 				</div>
 			</div>

@@ -26,7 +26,7 @@ const ModalBook = ({ modalData , setModalData }) => {
 				console.log(response);
 				if(response.data.acknowledged){
 					toast.success('Item Booked Successfully')
-					setModalData(null)
+				
 				}
 			})
 			.catch(function (error) {

@@ -32,11 +32,15 @@ const AllSeller = () => {
         })
 
     }
+
     const handleDelete =(id)=>{
         let yesDelete = prompt("Please Write Yes to Delete User");
-        console.log(id);
-        if(yesDelete.toLowerCase() === ""){
+        console.log(id , yesDelete);
+        if(yesDelete.toLowerCase() === "yes"){
             fetch(`http://localhost:4000/users/${id}` , {
+              headers: {
+                authorization: `bearer ${localStorage.getItem('accessUserToken')}`
+                },
                 method:"DELETE"
             }).then(res => res.json())
             .then(data => {

@@ -9,7 +9,7 @@ const useBuyer = email =>{
         fetch(`http://localhost:4000/users/buyer/${email}`)
         .then(res => res.json())
         .then(data => {
-                setIsBuyer(data.isBuyer)
+                setIsBuyer(data)
                 setIsBuyerLoading(false)
         });
     }

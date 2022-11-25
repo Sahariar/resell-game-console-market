@@ -58,6 +58,10 @@ export const route = createBrowserRouter([
         element:<AdminAreaLayout></AdminAreaLayout>,
         children:[
             {
+                path:"/dashboard",
+                element:<Dashboard />
+            },
+            {
                 path:"/dashboard/orders",
                 element:<Orders />
             },

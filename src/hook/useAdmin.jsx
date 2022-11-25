@@ -9,8 +9,8 @@ const useAdmin = email =>{
         fetch(`http://localhost:4000/users/admin/${email}`)
         .then(res => res.json())
         .then(data => {
-        
-                setIsAdmin(data.isAdmin)
+        console.log(data);
+                setIsAdmin(data)
                 setIsAdminLoading(false)
         });
     }
