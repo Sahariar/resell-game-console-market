@@ -45,7 +45,7 @@ const Register = () => {
 		formData.append("image", image);
 		const hostUrl = `https://api.imgbb.com/1/upload?key=${imageHostKey}`;
 
-		console.log(image, hostUrl, data);
+		// console.log(image, hostUrl, data);
 		fetch(hostUrl, {
 			method: "POST",
 			body: formData,
@@ -60,7 +60,7 @@ const Register = () => {
 							toast.success("User Successfully Created");
 							// Signed Up
 							const user = result.user;
-							console.log(user);
+							// console.log(user);
 							handleUserProfileUpdate(name, photoUrl);
 							saveUser(name, email, role, photoUrl);
 							// ...

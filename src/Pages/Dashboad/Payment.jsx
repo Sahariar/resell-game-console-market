@@ -11,7 +11,7 @@ const stripePromise = loadStripe(`${stripePk}`);
 
 const Payment = () => {
     const booking = useLoaderData();
-    console.log(import.meta.env.VITE_IMGBB_KEY);
+    // console.log(import.meta.env.VITE_IMGBB_KEY);
     // if(navigation.state === "loading"){
     //     return <Loading></Loading>
     // }

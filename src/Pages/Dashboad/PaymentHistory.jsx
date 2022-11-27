@@ -18,7 +18,7 @@ const PaymentHistory = () => {
     }
     })
 
-console.log(paymentHistory);
+// console.log(paymentHistory);
     return (
          <section className='mx-auto w-10/12 my-10' >
             <h3 className='py-10 text-6xl text-center'>All Payment History</h3>

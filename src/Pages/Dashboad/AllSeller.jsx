@@ -17,13 +17,13 @@ const AllSeller = () => {
     return data;
     }
     })
-    console.log(sellers);
+    // console.log(sellers);
     if(isLoading){
         return <Loading></Loading>
     }
 
     const handleVerify =(id)=>{
-        console.log(id);
+        // console.log(id);
         fetch(`https://b612-used-products-resale-server-side-sahariar.vercel.app/users/seller/${id}` , {
             method:"PUT"
         }).then(res => res.json())
@@ -38,7 +38,7 @@ const AllSeller = () => {
 
     const handleDelete =(id)=>{
         let yesDelete = prompt("Please Write Yes to Delete User");
-        console.log(id , yesDelete);
+        // console.log(id , yesDelete);
         if(yesDelete.toLowerCase() === "yes"){
             fetch(`https://b612-used-products-resale-server-side-sahariar.vercel.app/users/${id}` , {
               headers: {
