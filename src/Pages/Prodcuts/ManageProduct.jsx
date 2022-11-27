@@ -10,7 +10,7 @@ const ManageProduct = () => {
 	const { user } = useContext(AuthContext);
 	const { register, handleSubmit } = useForm();
 
-	const url = `http://localhost:4000/products?email=${user?.email}`;
+	const url = `https://b612-used-products-resale-server-side-sahariar.vercel.app/products?email=${user?.email}`;
 	const {
 		data: userProducts = [],
 		isLoader,
@@ -31,7 +31,7 @@ const ManageProduct = () => {
 	const handleStock = (data, id) => {
 		console.log(data.target.value, id);
 		const selectValue = data.target.value;
-    const url = `http://localhost:4000/products/stock/${id}?value=${selectValue}`
+    const url = `https://b612-used-products-resale-server-side-sahariar.vercel.app/products/stock/${id}?value=${selectValue}`
     console.log(url);
     axios.put(url)
 			.then(function (response) {

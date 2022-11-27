@@ -16,7 +16,7 @@ const Category = () => {
 	const [modalData, setModalData] = useState([]);
 	const [userINfo, setUserInfo] = useState("");
 	const [sellerMail, setSellerMail] = useState("");
-	const url = `http://localhost:4000/products?category=${cateData.category}`;
+	const url = `https://b612-used-products-resale-server-side-sahariar.vercel.app/products?category=${cateData.category}`;
 	const {
 		data: cateProducts = [],
 		isLoading,
@@ -39,7 +39,7 @@ const Category = () => {
 		const id = item._id;
 		console.log(id);
 		axios
-			.put(`http://localhost:4000/products/reported?id=${id}`)
+			.put(`https://b612-used-products-resale-server-side-sahariar.vercel.app/products/reported?id=${id}`)
 			.then(function (response) {
 				console.log(response);
 				if (response.data.acknowledged) {
@@ -67,7 +67,7 @@ const Category = () => {
 
 		console.log(bookingData, "bookedData");
 
-		axios.post("http://localhost:4000/bookings", bookingData)
+		axios.post("https://b612-used-products-resale-server-side-sahariar.vercel.app/bookings", bookingData)
 			.then(function (response) {
 				console.log(response);
 				if(response.data.acknowledged){

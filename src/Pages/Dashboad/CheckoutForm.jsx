@@ -17,7 +17,7 @@ const CheckoutForm = ({ booking }) => {
     console.log(itemPrice);
     useEffect(() => {
         // Create PaymentIntent as soon as the page loads
-        fetch("http://localhost:4000/create-payment-intent", {
+        fetch("https://b612-used-products-resale-server-side-sahariar.vercel.app/create-payment-intent", {
             method: "POST",
             headers: {
                 "content-type": "application/json",
@@ -83,7 +83,7 @@ const CheckoutForm = ({ booking }) => {
                 itemName,
                 product_id,
             }
-            fetch('http://localhost:4000/payments', {
+            fetch('https://b612-used-products-resale-server-side-sahariar.vercel.app/payments', {
                 method: 'POST',
                 headers: {
                     'content-type': 'application/json',
@@ -96,7 +96,7 @@ const CheckoutForm = ({ booking }) => {
                     if (data.acknowledged) {
                         setSuccess('Congrats! your payment completed');
                         setTransactionId(paymentIntent.id);
-                        const url = `http://localhost:4000/products/stock/${product_id}?value=false`
+                        const url = `https://b612-used-products-resale-server-side-sahariar.vercel.app/products/stock/${product_id}?value=false`
                         console.log(url);
                         axios.put(url)
                                 .then(function (response) {

@@ -4,7 +4,7 @@ import { AuthContext } from '../../context/AuthProvider';
 
 const PaymentHistory = () => {
     const {user} = useContext(AuthContext);
-    const url = `http://localhost:4000/payment/history?email=${user?.email}` 
+    const url = `https://b612-used-products-resale-server-side-sahariar.vercel.app/payment/history?email=${user?.email}` 
     const { data: paymentHistory = [] ,isLoading} = useQuery({
     queryKey: ['paymentHistory' ,user?.email],
     queryFn: async () => {

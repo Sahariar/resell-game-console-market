@@ -10,7 +10,7 @@ import Testimonail from './component/Testimonail';
 import { useQuery } from '@tanstack/react-query';
 
 const Home = () => {
-    const url = `http://localhost:4000/advertise`;
+    const url = `https://b612-used-products-resale-server-side-sahariar.vercel.app/advertise`;
 
     const { data: advertise = [] ,refetch ,isLoading } = useQuery({
         queryKey: ['advertise',],

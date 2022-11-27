@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
 const ReportsItem = () => {
-    const url = `http://localhost:4000/products/reported` 
+    const url = `https://b612-used-products-resale-server-side-sahariar.vercel.app/products/reported` 
     const { data: reported = [], refetch ,isLoading } = useQuery({
     queryKey: ['reported'],
     queryFn: async () => {
@@ -24,7 +24,7 @@ const ReportsItem = () => {
     
     const handleDelete = (id) =>{
         console.log(id);
-        const url = `http://localhost:4000/products/reported/${id}`
+        const url = `https://b612-used-products-resale-server-side-sahariar.vercel.app/products/reported/${id}`
         axios.delete(url, {
             headers: {
               authorization: `bearer ${localStorage.getItem('accessUserToken')}`

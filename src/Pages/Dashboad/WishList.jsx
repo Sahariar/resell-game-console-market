@@ -6,7 +6,7 @@ import { AuthContext } from '../../context/AuthProvider';
 const WishList = () => {
 	const { user } = useContext(AuthContext);
   
-	const url = `http://localhost:4000/bookings?email=${user?.email}&wishlist="true"`;
+	const url = `https://b612-used-products-resale-server-side-sahariar.vercel.app/bookings?email=${user?.email}&wishlist="true"`;
 	const {
 		data: bookings = [],
 		isLoading,

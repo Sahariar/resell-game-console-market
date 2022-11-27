@@ -53,12 +53,12 @@ export const route = createBrowserRouter([
             },
             {
                 path:"/product/category/:id",
-                loader: async({params}) => fetch(`http://localhost:4000/products/category/${params.id}`),
+                loader: async({params}) => fetch(`https://b612-used-products-resale-server-side-sahariar.vercel.app/products/category/${params.id}`),
                 element:<PrivateRoutes><Category></Category> </PrivateRoutes> 
             },
             {
                 path:"/product/single/:id",
-                loader: async({params}) => fetch(`http://localhost:4000/products/single?id=${params.id}`),
+                loader: async({params}) => fetch(`https://b612-used-products-resale-server-side-sahariar.vercel.app/products/single?id=${params.id}`),
                 element:<PrivateRoutes><SingleProduct></SingleProduct> </PrivateRoutes> 
             },
 
@@ -98,7 +98,7 @@ export const route = createBrowserRouter([
             },
             {
                 path:"/dashboard/payment/:id",
-                loader: ({params}) => fetch(`http://localhost:4000/bookings/${params.id}`),
+                loader: ({params}) => fetch(`https://b612-used-products-resale-server-side-sahariar.vercel.app/bookings/${params.id}`),
                 element:<Payment></Payment>
             },
             {
