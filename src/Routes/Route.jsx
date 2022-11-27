@@ -8,7 +8,9 @@ import AllSeller from "../Pages/Dashboad/AllSeller";
 import Dashboard from "../Pages/Dashboad/Dashboard";
 import Orders from "../Pages/Dashboad/Orders";
 import Payment from "../Pages/Dashboad/Payment";
+import PaymentHistory from "../Pages/Dashboad/PaymentHistory";
 import ReportsItem from "../Pages/Dashboad/ReportsItem";
+import WishList from "../Pages/Dashboad/WishList";
 import ErrorElement from "../Pages/ErrorElement/ErrorElement";
 import Home from "../Pages/Home/Home";
 import Login from "../Pages/Login/Login";
@@ -18,6 +20,8 @@ import AddProduct from "../Pages/Prodcuts/AddProduct";
 import Category from "../Pages/Prodcuts/Category/Category";
 import ManageProduct from "../Pages/Prodcuts/ManageProduct";
 import SingleProduct from "../Pages/Prodcuts/SingleProduct";
+import AdminRoutes from "./AdminRoutes/AdminRoutes";
+import BuyerRoutes from "./BuyerRoutes/BuyerRoutes";
 import PrivateRoutes from "./PrivateRoutes/PrivateRoutes";
 
 export const route = createBrowserRouter([
@@ -49,12 +53,12 @@ export const route = createBrowserRouter([
             },
             {
                 path:"/product/category/:id",
-                loader: async({params}) => fetch(`https://b612-used-products-resale-server-side-sahariar.vercel.app/products/category/${params.id}`),
+                loader: async({params}) => fetch(`http://localhost:4000/products/category/${params.id}`),
                 element:<PrivateRoutes><Category></Category> </PrivateRoutes> 
             },
             {
                 path:"/product/single/:id",
-                loader: async({params}) => fetch(`https://b612-used-products-resale-server-side-sahariar.vercel.app/products/single?id=${params.id}`),
+                loader: async({params}) => fetch(`http://localhost:4000/products/single?id=${params.id}`),
                 element:<PrivateRoutes><SingleProduct></SingleProduct> </PrivateRoutes> 
             },
 
@@ -62,6 +66,7 @@ export const route = createBrowserRouter([
     },{
         path:'/dashboard',
         element:<AdminAreaLayout></AdminAreaLayout>,
+        errorElement:<ErrorElement></ErrorElement>,
         children:[
             {
                 path:"/dashboard",
@@ -77,15 +82,15 @@ export const route = createBrowserRouter([
             },
             {
                 path:"/dashboard/allsellers",
-                element:<AllSeller />
+                element:<AdminRoutes><AllSeller /></AdminRoutes>
             },
             {
                 path:"/dashboard/allbuyers",
-                element:<Allbuyers />
+                element:<AdminRoutes><Allbuyers /></AdminRoutes>
             },
             {
                 path:"/dashboard/addproduct",
-                element:<AddProduct />
+                element:<BuyerRoutes><AddProduct /></BuyerRoutes>
             },
             {
                 path:"/dashboard/myproduct",
@@ -93,8 +98,16 @@ export const route = createBrowserRouter([
             },
             {
                 path:"/dashboard/payment/:id",
-                loader: ({params}) => fetch(`https://b612-used-products-resale-server-side-sahariar.vercel.app/bookings/${params.id}`),
+                loader: ({params}) => fetch(`http://localhost:4000/bookings/${params.id}`),
                 element:<Payment></Payment>
+            },
+            {
+                path:"/dashboard/paymenthistory",
+                element:<PaymentHistory></PaymentHistory>
+            },
+            {
+                path:"/dashboard/wishList",
+                element:<WishList></WishList>
             },
       ]
     },

@@ -6,8 +6,10 @@ const ErrorElement = () => {
     const error = useRouteError();
     console.error(error);
     return (
-        <section>
-            <TitleArea>Oops Error! </TitleArea>
+        <section className='container mx-auto'>
+         <h2 className="text-2xl">
+         Oops Error! 
+            </h2> 
             <div className="container mx-auto">
             <p>Sorry, an unexpected error has occurred.</p>
       <p>

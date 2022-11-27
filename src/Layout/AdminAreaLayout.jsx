@@ -30,6 +30,8 @@ const AdminAreaLayout = () => {
   <label htmlFor="user-dash-drawer" className="drawer-overlay"></label>
     <ul className="menu p-4 w-80 text-base-content bg-info lg:bg-accent/20 rounded-xl">
       <li><NavLink to={'/dashboard/orders'}> My orders</NavLink></li>
+      <li><NavLink to={'/dashboard/wishList'}> My WishList</NavLink></li>
+      <li><NavLink to={'/dashboard/paymentHistory'}> Payment History</NavLink></li>
       {
       isAdmin && <>
        <li><NavLink to={'/dashboard/reportsitem'}> Reports Item</NavLink></li>

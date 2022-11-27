@@ -11,7 +11,7 @@ const AddProduct = () => {
     const {user} = useContext(AuthContext)
 
     const navigate = useNavigate();
-    const url = `https://b612-used-products-resale-server-side-sahariar.vercel.app/products/category`;
+    const url = `http://localhost:4000/products/category`;
 
     const { data: productCate = [] } = useQuery({
         queryKey: ['productCate',],
@@ -33,7 +33,7 @@ const AddProduct = () => {
     const { data: sellerUsers = [] } = useQuery({
         queryKey: ['sellerUsers',],
         queryFn: async () => {
-            const res = await fetch(`https://b612-used-products-resale-server-side-sahariar.vercel.app/users`);
+            const res = await fetch(`http://localhost:4000/users`);
             const data = await res.json();
             return data;
         }
@@ -88,7 +88,7 @@ const AddProduct = () => {
                         isReported:false,
                     }
                     console.log(bookingData);
-                    axios.post("https://b612-used-products-resale-server-side-sahariar.vercel.app/products", bookingData)
+                    axios.post("http://localhost:4000/products", bookingData)
                     .then(function (response) {
                         console.log(response);
                         if(response.data.acknowledged){

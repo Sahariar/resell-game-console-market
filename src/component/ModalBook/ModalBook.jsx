@@ -17,11 +17,14 @@ const ModalBook = ({ modalData , setModalData }) => {
 			itemPrice: modalData.sellPrice,
 			location: data.location,
 			contactNo: data.contactNo,
+			paid:false,
+			product_id:modalData._id,
+			wishList: true
 		};
 
 		console.log(bookingData, "bookedData");
 
-		axios.post("https://b612-used-products-resale-server-side-sahariar.vercel.app/bookings", bookingData)
+		axios.post("http://localhost:4000/bookings", bookingData)
 			.then(function (response) {
 				console.log(response);
 				if(response.data.acknowledged){

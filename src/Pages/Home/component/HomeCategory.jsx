@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 const HomeCategory = () => {
 
-    const productUrl = `https://b612-used-products-resale-server-side-sahariar.vercel.app/products/category`;
+    const productUrl = `http://localhost:4000/products/category`;
 
     const { data: productCate = [] } = useQuery({
         queryKey: ['productCate',],

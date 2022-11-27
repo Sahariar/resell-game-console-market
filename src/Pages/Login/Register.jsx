@@ -155,7 +155,7 @@ const Register = () => {
 		}
 	
 
-		axios.post("https://b612-used-products-resale-server-side-sahariar.vercel.app/users",user)
+		axios.post("http://localhost:4000/users",user)
 			.then(function (response) {
 				console.log(response);
 				if(response.data.acknowledged){

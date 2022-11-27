@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useLoaderData } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import TitleArea from "../../../component/Shared/TitleArea";
@@ -6,13 +6,13 @@ import { Link } from "react-router-dom";
 import Loading from "../../../component/Shared/Loading";
 import ModalBook from "../../../component/ModalBook/ModalBook";
 import axios from "axios";
-import { MdOutlineReportGmailerrorred } from "react-icons/md";
-import { TbBrandBooking } from "react-icons/tb";
+import { MdOutlineReportGmailerrorred,MdShoppingCart } from "react-icons/md";
+import { TbBrandBooking,TbShoppingCart } from "react-icons/tb";
 import { toast } from "react-toastify";
+import { AuthContext } from "../../../context/AuthProvider";
 const Category = () => {
 	const cateData = useLoaderData();
-
-
+	const {user} = useContext(AuthContext)
 	const [modalData, setModalData] = useState([]);
 	const [userINfo, setUserInfo] = useState("");
 	const [sellerMail, setSellerMail] = useState("");
@@ -22,7 +22,7 @@ const Category = () => {
 		isLoading,
 		refetch,
 	} = useQuery({
-		queryKey: ["cateProducts",  cateData.category],
+		queryKey: ["cateProducts", cateData.category],
 		queryFn: async () => {
 			const res = await fetch(url);
 			const data = await res.json();
@@ -36,23 +36,49 @@ const Category = () => {
 	const handleReport = (item) => {
 		console.log(item);
 
-		const id =item._id
-		console.log(id)
-		axios.put(`http://localhost:4000/products/reported?id=${id}`)
-		.then(function (response) {
-            console.log(response);
-            if(response.data.acknowledged){
-                toast.success('Product Reported Successfully')
-            }
-        })
-        .catch(function (error) {
-            console.log(error);
-            toast.error(error)
-        });
+		const id = item._id;
+		console.log(id);
+		axios
+			.put(`http://localhost:4000/products/reported?id=${id}`)
+			.then(function (response) {
+				console.log(response);
+				if (response.data.acknowledged) {
+					toast.success("Product Reported Successfully");
+				}
+			})
+			.catch(function (error) {
+				console.log(error);
+				toast.error(error);
+			});
+	};
 
+	const handleWishList = (item) => {
 
-	}
+		const bookingData = {
+			userName:user?.displayName,
+			email:user?.email,
+			itemName: item?.name,
+			itemPrice: item?.sellPrice,
+			paid:false,
+			product_id:item._id,
+			wishList: true,
+			location:"Not Provided"
+		};
 
+		console.log(bookingData, "bookedData");
+
+		axios.post("http://localhost:4000/bookings", bookingData)
+			.then(function (response) {
+				console.log(response);
+				if(response.data.acknowledged){
+					toast.success('Item added to Wish List Successfully')
+				}
+			})
+			.catch(function (error) {
+				console.log(error);
+				toast.error(error)
+			});
+	};
 
 	return (
 		<section>
@@ -62,11 +88,11 @@ const Category = () => {
 				<div className="grid lg:grid-cols-2 grid-cols-1 md:grid-cols-2 px-6 gap-14">
 					{cateProducts.map((item) => (
 						<div
-							className="card shadow-xl min-h-96 bg-white/20"
+							className="card w-full shadow-xl min-h-96 bg-white/20"
 							key={item?._id}
 						>
 							<figure>
-								<img src={item?.img} alt={item?.category} className="xl:h-96"/>
+								<img src={item?.img} alt={item?.category} className="xl:h-96" />
 							</figure>
 
 							<div className="card-body">
@@ -91,7 +117,7 @@ const Category = () => {
 									<div className="flex flex-col">
 										<p className="">SellIng Price : ${item?.sellPrice}</p>
 										<div className="flex">
-											Seller Name: {" "}
+											Seller Name:{" "}
 											{item.isVerified ? (
 												<div
 													className="tooltip tooltip-top"
@@ -115,7 +141,7 @@ const Category = () => {
 											) : (
 												""
 											)}
-                                            {item.sellerName}
+											{item.sellerName}
 										</div>
 									</div>
 								</div>
@@ -123,16 +149,34 @@ const Category = () => {
 								<div className="flex flex-col">
 									<p className="flex">Condition: {item?.conditionType}</p>
 									<p className="flex">Contact No: +{item?.contactNo}</p>
-                                    <p className="flex">Location: {item?.address}</p>
-									<button className="btn bg-error ease-in hover:bg-error/80 mt-4 border-error hover:border-error/80 text-center justify-center items-center text-white" onClick={() => handleReport(item)}> <MdOutlineReportGmailerrorred className="text-2xl mx-2" /> Report to Admin </button>
+									<p className="flex">Location: {item?.address}</p>
 								</div>
+								<div className="flex lg:flex-row justify-around my-4">
+									<button
+										className="btn bg-error ease-in w-5/12 mr-2 shadow-md hover:bg-error/80  border-error hover:border-error/80 text-center justify-center items-center text-white"
+										onClick={() => handleReport(item)}
+									>
+										{" "}
+										<MdOutlineReportGmailerrorred className="text-2xl mx-2" />{" "}
+										Report to Admin{" "}
+									</button>
+									<button
+										className="btn btn-secondary shadow-md w-5/12 ease-in hover:btn-secondary/80 border-secondary hover:border-secondary/80 text-center justify-center items-cente"
+										onClick={() => handleWishList(item)}
+									>
+										{" "}
+										<TbShoppingCart className="text-2xl mx-2" />
+										Add to WishList
+									</button>
+									</div>
 								<div className="justify-center my-4">
+								
 									<label
 										htmlFor="bookModal"
 										className="btn btn-primary btn-block text-white"
 										onClick={() => setModalData(item)}
 									>
-									<TbBrandBooking className="text-2xl mx-2" />	Book Now
+										<TbBrandBooking className="text-2xl mx-2" /> Book Now
 									</label>
 								</div>
 							</div>

@@ -1,5 +1,7 @@
 import { CardElement, useElements, useStripe } from '@stripe/react-stripe-js';
+import axios from 'axios';
 import React, { useEffect, useState } from 'react';
+import { toast } from 'react-toastify';
 // Left to do is JWT token, Payment gatway then deploy server then testing.
 // Add product dashboard.
 const CheckoutForm = ({ booking }) => {
@@ -11,20 +13,20 @@ const CheckoutForm = ({ booking }) => {
 
     const stripe = useStripe();
     const elements = useElements();
-    const { itemName, email, itemPrice, _id } = booking;
-
+    const { itemName, email, itemPrice, _id ,product_id } = booking;
+    console.log(itemPrice);
     useEffect(() => {
         // Create PaymentIntent as soon as the page loads
         fetch("http://localhost:4000/create-payment-intent", {
             method: "POST",
             headers: {
-                "Content-Type": "application/json",
-                authorization: `bearer ${localStorage.getItem('accessToken')}`
+                "content-type": "application/json",
+                authorization: `bearer ${localStorage.getItem('accessUserToken')}`
             },
             body: JSON.stringify({ itemPrice }),
-        })
-            .then((res) => res.json())
-            .then((data) => setClientSecret(data.clientSecret));
+        }).then((res) => res.json())
+            .then((data) => setClientSecret(data.clientSecret))
+            .catch(err => console.log(err))
     }, [itemPrice]);
 
     const handleSubmit = async (event) => {
@@ -74,25 +76,40 @@ const CheckoutForm = ({ booking }) => {
             console.log('card info', card);
             // store payment info in the database
             const payment = {
-                price,
+                itemPrice,
                 transactionId: paymentIntent.id,
                 email,
-                bookingId: _id
+                bookingId: _id,
+                itemName,
+                product_id,
             }
             fetch('http://localhost:4000/payments', {
                 method: 'POST',
                 headers: {
                     'content-type': 'application/json',
-                    authorization: `bearer ${localStorage.getItem('accessToken')}`
+                    authorization: `bearer ${localStorage.getItem('accessUserToken')}`
                 },
                 body: JSON.stringify(payment)
-            })
-                .then(res => res.json())
+            }).then(res => res.json())
                 .then(data => {
                     console.log(data);
-                    if (data.insertedId) {
+                    if (data.acknowledged) {
                         setSuccess('Congrats! your payment completed');
                         setTransactionId(paymentIntent.id);
+                        const url = `http://localhost:4000/products/stock/${product_id}?value=false`
+                        console.log(url);
+                        axios.put(url)
+                                .then(function (response) {
+                                    console.log(response);
+                                    if(response.data.acknowledged){
+                                        console.log(response.data.acknowledged);
+                                    }
+                                })
+                                .catch(function (error) {
+                                    console.log(error);
+                                    toast.error(error)
+                            
+                                });
                     }
                 })
         }

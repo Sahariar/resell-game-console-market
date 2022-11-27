@@ -7,7 +7,7 @@ import { AuthContext } from "../../context/AuthProvider";
 const Orders = () => {
 	const { user } = useContext(AuthContext);
   
-	const url = `http://localhost:4000/bookings?email=${user?.email}`;
+	const url = `http://localhost:4000/bookings?email=${user?.email}&wishlist="false"`;
 	const {
 		data: bookings = [],
 		isLoading,
@@ -62,11 +62,13 @@ const Orders = () => {
             <td>${book.itemPrice}</td>
             <td>{book.location}</td>
             <td>{
+              book.paid ? <span className='bg-success rounded-md shadow-md text-white py-3 px-8'> Paid</span>
+              :
 			 <Link to={`/dashboard/payment/${book._id}`}>
 				<button className='btn btn-primary text-white capitalize'>Pay ${book.itemPrice} </button> 
 			</Link>
 		}{
-		 <span className='bg-success rounded-md shadow-md text-white py-3 px-8'> Paid</span>
+		 
 		} 
 		</td>
     </tr> )
