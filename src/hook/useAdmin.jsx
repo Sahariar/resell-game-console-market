@@ -11,7 +11,7 @@ const useAdmin = email =>{
         })
         .then(res => res.json())
         .then(data => {
-        console.log(data);
+        // console.log(data);
                 setIsAdmin(data)
                 setIsAdminLoading(false)
         });

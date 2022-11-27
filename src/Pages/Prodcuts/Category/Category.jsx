@@ -34,10 +34,10 @@ const Category = () => {
 	}
 
 	const handleReport = (item) => {
-		console.log(item);
+		// console.log(item);
 
 		const id = item._id;
-		console.log(id);
+		// console.log(id);
 		axios
 			.put(`https://b612-used-products-resale-server-side-sahariar.vercel.app/products/reported?id=${id}`)
 			.then(function (response) {
@@ -66,7 +66,7 @@ const Category = () => {
 			img:item?.img
 		};
 
-		console.log(bookingData, "bookedData");
+		// console.log(bookingData, "bookedData");
 
 		axios.post("https://b612-used-products-resale-server-side-sahariar.vercel.app/bookings", bookingData)
 			.then(function (response) {

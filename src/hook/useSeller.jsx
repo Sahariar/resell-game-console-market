@@ -9,7 +9,7 @@ const useSeller = email =>{
         fetch(`https://b612-used-products-resale-server-side-sahariar.vercel.app/users/seller/${email}`)
         .then(res => res.json())
         .then(data => {
-            console.log(data);
+            // console.log(data);
                 setIsSeller(data)
                 setIsSellerLoading(false)
         });
