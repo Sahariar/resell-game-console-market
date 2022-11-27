@@ -25,7 +25,7 @@ const Login = () => {
 	if(token){
 		navigate(from, { replace: true })
 	}
-    console.log(from);
+
 	const onSubmit = (data) => {
 		const email = data.email;
 		const password = data.password;
