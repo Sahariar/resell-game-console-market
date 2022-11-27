@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const Clients = () => {
     return (
@@ -9,10 +10,12 @@ const Clients = () => {
                 <div className="mt-10 lg:mt-0 lg:col-start-1 lg:row-start-1">
                         <img src="https://i.ibb.co/5jwgBjJ/sellon.jpg" alt="" className="mx-auto rounded-lg shadow-lg dark:bg-gray-500" />
                     </div>
-                    <div className="lg:col-start-2 xl:mx-20">
-                        <h3 className="text-5xl font-bold tracking-tight sm:text-6xl ">Sell on Resell Game Console Market</h3>
+                    <div className="lg:col-start-2 m-5 xl:mx-20">
+                        <h3 className="text-3xl lg:text5xl font-bold tracking-tight sm:text-6xl">Sell on Resell Game Console Market</h3>
                         <p className="mt-3 text-lg ">Connect with vetted retailers across the United States, and start taking new wholesale orders.</p>
+            <Link to={'/register'}>
             <button className='btn btn-primary my-10 btn-wide text-white'> Apply Now</button>
+            </Link>
                     </div>
                 
                 </div>
