@@ -53,9 +53,12 @@ const ManageProduct = () => {
 	return (
 		<section className="user-product-area">
 			<div className="title-area p-10">
-				<h2 className="text-5xl">My Products</h2>
+				<h2 className="text-5xl text-center">My Products</h2>
 			</div>
 			<div className="user-area px-10">
+			{
+  userProducts.length > 0 ? <>
+
 				<div className="overflow-x-auto">
 					<table className="table w-full">
 						<thead>
@@ -141,6 +144,10 @@ const ManageProduct = () => {
 						</tbody>
 					</table>
 				</div>
+				</> : <div className="text-xl text-center">
+No Product Found
+</div>
+} 
 			</div>
 		</section>
 	);

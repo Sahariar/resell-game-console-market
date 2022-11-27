@@ -21,7 +21,7 @@ const ModalBook = ({ modalData , setModalData }) => {
 
 		console.log(bookingData, "bookedData");
 
-		axios.post("http://localhost:4000/bookings", bookingData)
+		axios.post("https://b612-used-products-resale-server-side-sahariar.vercel.app/bookings", bookingData)
 			.then(function (response) {
 				console.log(response);
 				if(response.data.acknowledged){

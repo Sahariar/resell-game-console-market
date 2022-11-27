@@ -11,7 +11,7 @@ const AddProduct = () => {
     const {user} = useContext(AuthContext)
 
     const navigate = useNavigate();
-    const url = `http://localhost:4000/products/category`;
+    const url = `https://b612-used-products-resale-server-side-sahariar.vercel.app/products/category`;
 
     const { data: productCate = [] } = useQuery({
         queryKey: ['productCate',],
@@ -33,7 +33,7 @@ const AddProduct = () => {
     const { data: sellerUsers = [] } = useQuery({
         queryKey: ['sellerUsers',],
         queryFn: async () => {
-            const res = await fetch(`http://localhost:4000/users`);
+            const res = await fetch(`https://b612-used-products-resale-server-side-sahariar.vercel.app/users`);
             const data = await res.json();
             return data;
         }
@@ -72,38 +72,41 @@ const AddProduct = () => {
 		})
 			.then((res) => res.json())
 			.then((imgData) => {
-				if (imgData.success) {
-					productImg = imgData
+				console.log(imgData);
+                if (imgData.success) {
+					productImg = imgData.data.url
+                    console.log(productImg);
+                    const bookingData = {
+                        ...data,
+                        sellPrice :sellPrice,
+                        sellerName:user?.displayName,
+                        email:user?.email,
+                        isStock:stokeValue,
+                        featured:featuredValue,
+                        img:productImg,
+                        isVerified:sellerName.isVerified,
+                        isReported:false,
+                    }
+                    console.log(bookingData);
+                    axios.post("https://b612-used-products-resale-server-side-sahariar.vercel.app/products", bookingData)
+                    .then(function (response) {
+                        console.log(response);
+                        if(response.data.acknowledged){
+                            toast.success('Product added Successfully')
+                            navigate('/dashboard/myproduct')
+                        }
+                    })
+                    .catch(function (error) {
+                        console.log(error);
+                        toast.error(error)
+                    });
 				}
+           
 			})
 			.catch((error) => {
 				console.error("Error:", error);
 			});
             console.log(productImg);
-        const bookingData = {
-            ...data,
-            sellPrice :sellPrice,
-            sellerName:user?.displayName,
-            email:user?.email,
-            isStock:stokeValue,
-            featured:featuredValue,
-            img:productImg,
-            isVerified:sellerName.isVerified,
-            isReported:false,
-        }
-        console.log(bookingData);
-        axios.post("http://localhost:4000/products", bookingData)
-        .then(function (response) {
-            console.log(response);
-            if(response.data.acknowledged){
-                toast.success('Product added Successfully')
-                navigate('/dashboard/myproduct')
-            }
-        })
-        .catch(function (error) {
-            console.log(error);
-            toast.error(error)
-        });
     }
     
     return (

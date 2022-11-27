@@ -16,7 +16,7 @@ const Header = () => {
 	};
 
 	const pathName = window.location.pathname
-	 const url =`http://localhost:4000/products/category`
+	 const url =`https://b612-used-products-resale-server-side-sahariar.vercel.app/products/category`
 	
 	 const { data: category = [], isLoading , refetch} = useQuery({
 	 queryKey: ['category'],

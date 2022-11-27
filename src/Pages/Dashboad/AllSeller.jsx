@@ -5,7 +5,7 @@ import Loading from '../../component/Shared/Loading';
 import { toast } from 'react-toastify';
 const AllSeller = () => {
     const {user} = useContext(AuthContext)
-    const url = `http://localhost:4000/users?role=seller` 
+    const url = `https://b612-used-products-resale-server-side-sahariar.vercel.app/users?role=seller` 
     const { data: sellers = [], isLoading , refetch } = useQuery({
     queryKey: ['sellers'],
     queryFn: async () => {
@@ -21,7 +21,7 @@ const AllSeller = () => {
 
     const handleVerify =(id)=>{
         console.log(id);
-        fetch(`http://localhost:4000/users/seller/${id}` , {
+        fetch(`https://b612-used-products-resale-server-side-sahariar.vercel.app/users/seller/${id}` , {
             method:"PUT"
         }).then(res => res.json())
         .then(data => {
@@ -37,7 +37,7 @@ const AllSeller = () => {
         let yesDelete = prompt("Please Write Yes to Delete User");
         console.log(id , yesDelete);
         if(yesDelete.toLowerCase() === "yes"){
-            fetch(`http://localhost:4000/users/${id}` , {
+            fetch(`https://b612-used-products-resale-server-side-sahariar.vercel.app/users/${id}` , {
               headers: {
                 authorization: `bearer ${localStorage.getItem('accessUserToken')}`
                 },

@@ -1,9 +1,11 @@
 import { useQuery } from '@tanstack/react-query';
+import axios from 'axios';
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 const ReportsItem = () => {
-    const url = `http://localhost:4000/products/reported` 
+    const url = `https://b612-used-products-resale-server-side-sahariar.vercel.app/products/reported` 
     const { data: reported = [], refetch ,isLoading } = useQuery({
     queryKey: ['reported'],
     queryFn: async () => {
@@ -19,7 +21,29 @@ const ReportsItem = () => {
     if(isLoading){
         return isLoading
     }
-    console.log(reported);
+    
+    const handleDelete = (id) =>{
+        console.log(id);
+        const url = `https://b612-used-products-resale-server-side-sahariar.vercel.app/products/reported/${id}`
+        axios.delete(url, {
+            headers: {
+              authorization: `bearer ${localStorage.getItem('accessUserToken')}`
+              },
+          })
+        .then(response => {
+            console.log(response)
+            toast.success("Item Deleted Successfully",{
+                position: "top-center",
+            })
+            refetch();
+        })
+        .catch(error => {
+            toast.error(error)
+            console.error('There was an error!', error);
+        });
+
+    }
+
     return (
         <section className='mx-auto w-10/12 my-10' >
             <h3 className='py-10 text-5xl text-center'>Reported Items</h3>
@@ -48,7 +72,9 @@ const ReportsItem = () => {
             <td>{reported.sellerName}</td>
             <td>${reported.sellPrice}</td>
             <td>
-				<button className='btn btn-error text-white capitalize'>Delete Product</button> 
+				<button className='btn btn-error text-white capitalize' onClick={()=>{
+                    handleDelete(reported._id)
+                }}>Delete Product</button> 
 		    </td>
           </tr> )
         }
