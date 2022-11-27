@@ -2,7 +2,6 @@ import React, { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import TitleArea from "../../component/Shared/TitleArea";
 import { AuthContext } from "../../context/AuthProvider";
 import UseToken from "../../hook/useToken";
 

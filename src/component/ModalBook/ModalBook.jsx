@@ -19,14 +19,15 @@ const ModalBook = ({ modalData , setModalData }) => {
 			contactNo: data.contactNo,
 			paid:false,
 			product_id:modalData._id,
-			wishList: true
+			wishList: false,
+			img:modalData.img
 		};
 
-		console.log(bookingData, "bookedData");
+		// console.log(bookingData, "bookedData");
 
 		axios.post("https://b612-used-products-resale-server-side-sahariar.vercel.app/bookings", bookingData)
 			.then(function (response) {
-				console.log(response);
+				// console.log(response);
 				if(response.data.acknowledged){
 					toast.success('Item Booked Successfully')
 				

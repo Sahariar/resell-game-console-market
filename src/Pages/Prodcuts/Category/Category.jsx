@@ -31,7 +31,7 @@ const Category = () => {
 	});
 	if (isLoading) {
 		return <Loading></Loading>;
-	} else refetch();
+	}
 
 	const handleReport = (item) => {
 		console.log(item);
@@ -62,7 +62,8 @@ const Category = () => {
 			paid:false,
 			product_id:item._id,
 			wishList: true,
-			location:"Not Provided"
+			location:"Not Provided",
+			img:item?.img
 		};
 
 		console.log(bookingData, "bookedData");
@@ -151,17 +152,17 @@ const Category = () => {
 									<p className="flex">Contact No: +{item?.contactNo}</p>
 									<p className="flex">Location: {item?.address}</p>
 								</div>
-								<div className="flex lg:flex-row justify-around my-4">
+								<div className="flex flex-col xl:flex-row justify-around my-4 ">
 									<button
-										className="btn bg-error ease-in w-5/12 mr-2 shadow-md hover:bg-error/80  border-error hover:border-error/80 text-center justify-center items-center text-white"
+										className="btn bg-error ease-in xl:w-5/12 mr-2 my-4 shadow-md hover:bg-error/80  border-error hover:border-error/80 text-center justify-center items-center text-white"
 										onClick={() => handleReport(item)}
 									>
 										{" "}
-										<MdOutlineReportGmailerrorred className="text-2xl mx-2" />{" "}
-										Report to Admin{" "}
+										<MdOutlineReportGmailerrorred className="text-2xl mx-2" />
+										Report to Admin
 									</button>
 									<button
-										className="btn btn-secondary shadow-md w-5/12 ease-in hover:btn-secondary/80 border-secondary hover:border-secondary/80 text-center justify-center items-cente"
+										className="btn btn-secondary shadow-md xl:w-5/12 my-4 ease-in hover:btn-secondary/80 border-secondary hover:border-secondary/80 text-center justify-center items-cente"
 										onClick={() => handleWishList(item)}
 									>
 										{" "}

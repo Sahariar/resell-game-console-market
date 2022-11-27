@@ -39,7 +39,7 @@ const AddProduct = () => {
         }
     }) 
     const sellerName = sellerUsers.find(({email}) => email === user?.email)
-    console.log(sellerName?.isVerified);
+    // console.log(sellerName?.isVerified);
 
     const onSubmit =(data) =>{
         toast.info('Product is adding to Our Site.')
@@ -57,7 +57,7 @@ const AddProduct = () => {
             featuredValue = false
         }
 
-        console.log(data.category);
+        // console.log(data.category);
         let productImg ;
 
         console.log(data.sellPrice , 'product');
@@ -65,14 +65,14 @@ const AddProduct = () => {
         const formData = new FormData();
 		formData.append("image", image);
 		const hostUrl = `https://api.imgbb.com/1/upload?key=${imageHostKey}`;
-        console.log(image, hostUrl, data);
+        // console.log(image, hostUrl, data);
 		fetch(hostUrl, {
 			method: "POST",
 			body: formData,
 		})
 			.then((res) => res.json())
 			.then((imgData) => {
-				console.log(imgData);
+				// console.log(imgData);
                 if (imgData.success) {
 					productImg = imgData.data.url
                     console.log(productImg);
@@ -87,7 +87,7 @@ const AddProduct = () => {
                         isVerified:sellerName.isVerified,
                         isReported:false,
                     }
-                    console.log(bookingData);
+                    // console.log(bookingData);
                     axios.post("https://b612-used-products-resale-server-side-sahariar.vercel.app/products", bookingData)
                     .then(function (response) {
                         console.log(response);
@@ -106,7 +106,7 @@ const AddProduct = () => {
 			.catch((error) => {
 				console.error("Error:", error);
 			});
-            console.log(productImg);
+            // console.log(productImg);
     }
     
     return (

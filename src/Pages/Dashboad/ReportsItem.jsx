@@ -23,7 +23,7 @@ const ReportsItem = () => {
     }
     
     const handleDelete = (id) =>{
-        console.log(id);
+        // console.log(id);
         const url = `https://b612-used-products-resale-server-side-sahariar.vercel.app/products/reported/${id}`
         axios.delete(url, {
             headers: {
@@ -31,7 +31,7 @@ const ReportsItem = () => {
               },
           })
         .then(response => {
-            console.log(response)
+            // console.log(response)
             toast.success("Item Deleted Successfully",{
                 position: "top-center",
             })

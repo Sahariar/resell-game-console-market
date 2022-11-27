@@ -4,7 +4,7 @@ import { Link, NavLink, useLoaderData } from "react-router-dom";
 import { AuthContext } from "../../context/AuthProvider";
 import Loading from "./Loading";
 import Logo from "./Logo";
-
+import { ImDrawer } from "react-icons/im";
 const Header = () => {
 	const { user, logOut } = useContext(AuthContext);
 	const handleLogOut = () => {
@@ -85,9 +85,8 @@ const Header = () => {
 				<div className="navbar-end">
 					<div className="lg:hidden flex">
 						{
-							pathName === "/dashboard" ? <label htmlFor="user-dash-drawer" className="btn btn-ghost"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
-							<path strokeLinecap="round" strokeLinejoin="round" d="M3 4.5h14.25M3 9h9.75M3 13.5h9.75m4.5-4.5v12m0 0l-3.75-3.75M17.25 21L21 17.25" />
-						  </svg>						  
+							pathName === "/dashboard" ? <label htmlFor="user-dash-drawer" className="btn btn-ghost">
+								<ImDrawer className="text-4xl text-primary"/>			  
 						  </label>
 						  :
 						  <></>

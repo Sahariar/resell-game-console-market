@@ -6,14 +6,14 @@ import { AuthContext } from "../../context/AuthProvider";
 
 const Orders = () => {
 	const { user } = useContext(AuthContext);
-  
-	const url = `https://b612-used-products-resale-server-side-sahariar.vercel.app/bookings?email=${user?.email}&wishlist="false"`;
+  const wishList = "false"
+	const url = `https://b612-used-products-resale-server-side-sahariar.vercel.app/bookings?email=${user?.email}&wishlist=${wishList}`;
 	const {
 		data: bookings = [],
 		isLoading,
 		refetch,
 	} = useQuery({
-		queryKey: ["bookings", user?.email],
+		queryKey: ["bookings", user?.email , wishList],
 		queryFn: async () => {
 			const res = await fetch(url, {
         headers: {
@@ -44,6 +44,7 @@ const Orders = () => {
       <thead>
       <tr>
         <th></th>
+        <th>Item Image</th>
         <th>ItemName</th>
         <th>User Email</th>
         <th>Price</th>
@@ -57,6 +58,7 @@ const Orders = () => {
 
            { bookings.map((book, index) =><tr className="active"  key={book._id}>
             <th>{index+1}</th>
+            <td><img src={book.img} alt={book.itemName} className="w-24 h-24"/> </td>
             <td>{book.itemName}</td>
             <td>{book.email}</td>
             <td>${book.itemPrice}</td>

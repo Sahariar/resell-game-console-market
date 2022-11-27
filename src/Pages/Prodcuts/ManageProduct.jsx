@@ -29,10 +29,10 @@ const ManageProduct = () => {
 	}
 
 	const handleStock = (data, id) => {
-		console.log(data.target.value, id);
+		// console.log(data.target.value, id);
 		const selectValue = data.target.value;
     const url = `https://b612-used-products-resale-server-side-sahariar.vercel.app/products/stock/${id}?value=${selectValue}`
-    console.log(url);
+    // console.log(url);
     axios.put(url)
 			.then(function (response) {
 				console.log(response);

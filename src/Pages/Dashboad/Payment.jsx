@@ -23,8 +23,8 @@ const Payment = () => {
             <h3 className="text-3xl text-center">Payment</h3>        
 
 <p className="text-xl text-center my-8">Please pay <strong> ${booking.itemPrice}</strong> for your  {booking.itemName}</p>
-<div className="item-details flex p-10 justify-center items-start">
-<div className="item-all-details bg-neutral shadow-md card w-4/12 p-10 mx-5 text-white space-y-4">
+<div className="item-details flex flex-col xl:flex-row p-10 justify-center items-start">
+<div className="item-all-details bg-neutral shadow-md card xl:w-4/12 p-10 xl:mx-5 text-white space-y-4">
     <h3 className="item">
         <div className="item-name">
         Item Name:    <span className='text-xl mx-4'>{booking.itemName}</span> 
@@ -46,7 +46,7 @@ const Payment = () => {
     
 
 </div>
-<div className=' bg-white shadow-md card w-5/12 mx-5 p-10 text-white space-y-4'>
+<div className=' bg-white shadow-md card xl:w-5/12 w-full xl:mx-5 p-10 text-white space-y-4 my-10'>
     <Elements stripe={stripePromise}>
         <CheckoutForm
           booking={booking}

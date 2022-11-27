@@ -32,7 +32,7 @@ const Footer = () => {
 				<div className="lg:flex">
 					<div className="w-full -mx-6 lg:w-2/5">
 						<div className="px-6">
-							<div className="bg-white w-80 rounded-md">
+							<div className="bg-white lg:w-72 rounded-md">
 							<Logo></Logo>
 							</div>
 

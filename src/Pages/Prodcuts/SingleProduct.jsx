@@ -26,13 +26,13 @@ const SingleProduct = () => {
 			<div className="details-area my-10 ">
 				<div className="container mx-auto">
 					<div className="card bg-primary/5 p-12 ">
-						<div className="flex space-x-9">
-							<img src={product.img} alt={product.name} className="w-96 h-96" />
+						<div className="flex flex-col xl:flex-row space-x-9">
+							<img src={product.img} alt={product.name} className="w-96 h-96 mx-auto" />
 							<div className="info-area w-full">
 								<h4 className="text-xl py-4">About:</h4>
 								{product.about}
-								<div className="flex flex:col lg:flex-row justify-between">
-									<div className="cate-area capitalize text-xl my-5 flex items-center">
+								<div className="flex flex-col xl:flex-row justify-between">
+									<div className="cate-area capitalize text-xl my-5 flex flex-col xl:flex-row items-center">
 										<MdCategory className="mx-2"/>
 										Category - {product.category}
 									</div>
@@ -52,10 +52,10 @@ const SingleProduct = () => {
 
 									
 								</div>
-								<div className="flex flex:col lg:flex-row justify-between items-center">
+								<div className="flex flex-col xl:flex-row justify-between items-center">
 									
 								</div>
-								<div className="flex flex:col lg:flex-row justify-between">
+								<div className="flex flex-col xl:flex-row justify-between">
 									<div className="cate-area capitalize text-xl my-5 flex justify-center items-center px-2">
 										<MdLocationSearching  className="mx-2"/> Address- {product.address}
 									</div>
@@ -67,7 +67,7 @@ const SingleProduct = () => {
 										<MdSell className="mx-2"/> Sell Price- ${product.sellPrice}
 									</div>
 								</div>
-								<div className="flex flex:col lg:flex-row justify-between">
+								<div className="flex flex-col xl:flex-row justify-between">
 									<div className="cate-area capitalize text-xl my-5 flex justify-center items-center px-2">
 										<BsCalendarDate className="mx-2" /> Create At- {product.createdAt.slice(0, 10)}
 									</div>
@@ -79,7 +79,7 @@ const SingleProduct = () => {
 										<RiAdvertisementFill className="mx-2"/> Advertised - {product.featured ? "Yes" : "No"}
 									</div>
 								</div>
-								<div className="flex flex:col lg:flex-row justify-between">
+								<div className="flex flex-col xl:flex-row justify-between">
 									<div className="cate-area capitalize text-xl my-5 flex justify-center items-center px-2">
 									
 									<AiOutlineUser className="mx-2"/>

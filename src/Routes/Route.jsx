@@ -70,15 +70,15 @@ export const route = createBrowserRouter([
         children:[
             {
                 path:"/dashboard",
-                element:<Dashboard />
+                element:<PrivateRoutes><Dashboard /></PrivateRoutes>
             },
             {
                 path:"/dashboard/orders",
-                element:<Orders />
+                element:<PrivateRoutes><Orders /></PrivateRoutes>
             },
             {
                 path:"/dashboard/reportsitem",
-                element:<ReportsItem />
+                element:<AdminRoutes><ReportsItem /></AdminRoutes>
             },
             {
                 path:"/dashboard/allsellers",
@@ -94,12 +94,12 @@ export const route = createBrowserRouter([
             },
             {
                 path:"/dashboard/myproduct",
-                element:<ManageProduct />
+                element:<PrivateRoutes><ManageProduct /></PrivateRoutes>
             },
             {
                 path:"/dashboard/payment/:id",
                 loader: ({params}) => fetch(`https://b612-used-products-resale-server-side-sahariar.vercel.app/bookings/${params.id}`),
-                element:<Payment></Payment>
+                element:<PrivateRoutes><Payment></Payment></PrivateRoutes>
             },
             {
                 path:"/dashboard/paymenthistory",

@@ -73,7 +73,7 @@ const CheckoutForm = ({ booking }) => {
             return;
         }
         if (paymentIntent.status === "succeeded") {
-            console.log('card info', card);
+            // console.log('card info', card);
             // store payment info in the database
             const payment = {
                 itemPrice,
@@ -92,15 +92,15 @@ const CheckoutForm = ({ booking }) => {
                 body: JSON.stringify(payment)
             }).then(res => res.json())
                 .then(data => {
-                    console.log(data);
+                    // console.log(data);
                     if (data.acknowledged) {
                         setSuccess('Congrats! your payment completed');
                         setTransactionId(paymentIntent.id);
                         const url = `https://b612-used-products-resale-server-side-sahariar.vercel.app/products/stock/${product_id}?value=false`
-                        console.log(url);
+                        // console.log(url);
                         axios.put(url)
                                 .then(function (response) {
-                                    console.log(response);
+                                    // console.log(response);
                                     if(response.data.acknowledged){
                                         console.log(response.data.acknowledged);
                                     }

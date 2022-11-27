@@ -1,12 +1,13 @@
 import { useQuery } from '@tanstack/react-query';
 import React, { useContext } from 'react';
+import { Link } from 'react-router-dom';
 import Loading from '../../component/Shared/Loading';
 import { AuthContext } from '../../context/AuthProvider';
 
 const WishList = () => {
 	const { user } = useContext(AuthContext);
-  
-	const url = `https://b612-used-products-resale-server-side-sahariar.vercel.app/bookings?email=${user?.email}&wishlist="true"`;
+    const wishList ="true"
+	const url =`https://b612-used-products-resale-server-side-sahariar.vercel.app/bookings?email=${user?.email}&wishlist=${wishList}`;
 	const {
 		data: bookings = [],
 		isLoading,
@@ -42,6 +43,7 @@ bookings.length > 0 ? <>
   <thead>
   <tr>
     <th></th>
+    <th>Item Image</th>
     <th>ItemName</th>
     <th>User Email</th>
     <th>Price</th>
@@ -55,6 +57,7 @@ bookings.length > 0 ? <>
 
        { bookings.map((book, index) =><tr className="active"  key={book._id}>
         <th>{index+1}</th>
+        <td><img src={book.img} alt={book.itemName} className="w-24 h-24"/> </td>
         <td>{book.itemName}</td>
         <td>{book.email}</td>
         <td>${book.itemPrice}</td>

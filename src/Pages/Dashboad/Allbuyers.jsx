@@ -14,7 +14,7 @@ const Allbuyers = () => {
     return data;
     }
     })
-    console.log(buyers);
+    // console.log(buyers ,"buyer");
     if(isLoading){
         return <Loading></Loading>
     }
@@ -30,7 +30,7 @@ const Allbuyers = () => {
                 method:"DELETE"
             }).then(res => res.json())
             .then(data => {
-                console.log(data);
+               
               if(data.modifiedCount > 0){
                 toast.success('Delete user Successful')
                 refetch();
