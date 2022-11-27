@@ -135,12 +135,25 @@ const Register = () => {
 			});
 	};
 	const saveUser = (name, email, role, photoUrl) => {
-		const user = {
-			name,
-			email,
-			role,
-			photoUrl,
-		};
+
+		let user
+		if(role === "seller"){
+			 user = {
+				name,
+				email,
+				role,
+				photoUrl,
+				isVerified:false
+			}
+		}else{
+			user = {
+				name,
+				email,
+				role,
+				photoUrl
+			}
+		}
+	
 
 		axios.post("http://localhost:4000/users",user)
 			.then(function (response) {

@@ -1,23 +1,27 @@
+import axios from "axios";
 import React from "react";
+import { toast } from "react-toastify";
 
 const Blog = () => {
+
 	return (
 		<section>
 			{/* Post one  */}
 			<div className="p-5 mx-auto sm:p-10 md:p-16">
 				<div className="flex flex-col max-w-3xl mx-auto overflow-hidden rounded">
 					<img
-						src="https://source.unsplash.com/random/480x360"
+						src="https://i.ibb.co/hXPqDB4/fotis-fotopoulos-LJ9-KY8p-IH3-E-unsplash.jpg"
 						alt=""
 						className="w-full h-60 sm:h-96"
 					/>
-					<div className="p-6 pb-12 m-4 mx-auto -mt-16 space-y-6 lg:max-w-2xl sm:px-10 sm:mx-12 lg:rounded-md bg-neutral text-neutral-content">
+					<div className="p-6 pb-12 m-2 mx-auto -mt-16 space-y-6 lg:max-w-4xl sm:px-10 sm:mx-12 lg:rounded-md bg-primary text-primary-content">
 						<div className="space-y-2">
 							<h2 className="inline-block text-2xl font-semibold sm:text-3xl">
 								What are the different ways to manage a state in a React
 								application?
 							</h2>
 						</div>
+						
 						<div className="space-y-3">
 							<p>
 								Managing state in your React apps isn’t as simple as using
@@ -135,11 +139,11 @@ const Blog = () => {
 			<div className="p-5 mx-auto sm:p-10 md:p-16">
 				<div className="flex flex-col max-w-3xl mx-auto overflow-hidden rounded">
 					<img
-						src="https://source.unsplash.com/random/480x360"
+						src="https://i.ibb.co/hcyYpYF/lautaro-andreani-xk-Baqlcqeb4-unsplash.jpg"
 						alt=""
 						className="w-full h-60 sm:h-96"
 					/>
-					<div className="p-6 pb-12 m-4 mx-auto -mt-16 space-y-6 lg:max-w-2xl sm:px-10 sm:mx-12 lg:rounded-md bg-neutral text-neutral-content">
+					<div className="p-6 pb-12 m-4 mx-auto -mt-16 space-y-6 lg:max-w-2xl sm:px-10 sm:mx-12 lg:rounded-md bg-primary text-primary-content">
 						<div className="space-y-2">
 							<h2 className="inline-block text-2xl font-semibold sm:text-3xl">
 								How does prototypical inheritance work?
@@ -198,11 +202,11 @@ const Blog = () => {
 			<div className="p-5 mx-auto sm:p-10 md:p-16">
 				<div className="flex flex-col max-w-3xl mx-auto overflow-hidden rounded">
 					<img
-						src="https://source.unsplash.com/random/480x360"
+						src="https://i.ibb.co/XC6wjzJ/rahul-mishra-Jp-F58-ANavoc-unsplash.jpg"
 						alt=""
 						className="w-full h-60 sm:h-96"
 					/>
-					<div className="p-6 pb-12 m-4 mx-auto -mt-16 space-y-6 lg:max-w-2xl sm:px-10 sm:mx-12 lg:rounded-md bg-neutral text-neutral-content">
+					<div className="p-6 pb-12 m-4 mx-auto -mt-16 space-y-6 lg:max-w-2xl sm:px-10 sm:mx-12 lg:rounded-md bg-primary text-primary-content">
 						<div className="space-y-2">
 							<h2 className="inline-block text-2xl font-semibold sm:text-3xl">
 								What is a unit test? Why should we write unit tests?
@@ -234,11 +238,11 @@ Unit testing is a component of test-driven development (TDD), a pragmatic method
 			<div className="p-5 mx-auto sm:p-10 md:p-16">
 				<div className="flex flex-col max-w-3xl mx-auto overflow-hidden rounded">
 					<img
-						src="https://source.unsplash.com/random/480x360"
+						src="https://i.ibb.co/jJ98N7F/caspar-camille-rubin-7-SDoly3-FV-0-unsplash.jpg"
 						alt=""
 						className="w-full h-60 sm:h-96"
 					/>
-					<div className="p-6 pb-12 m-4 mx-auto -mt-16 space-y-6 lg:max-w-2xl sm:px-10 sm:mx-12 lg:rounded-md bg-neutral text-neutral-content">
+					<div className="p-6 pb-12 m-4 mx-auto -mt-16 space-y-6 lg:max-w-2xl sm:px-10 sm:mx-12 lg:rounded-md bg-primary text-primary-content">
 						<div className="space-y-2">
 							<h2 className="inline-block text-2xl font-semibold sm:text-3xl">
 								Angular vs React vs Vue?

@@ -1,4 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
+import { ErrorMessage } from "@hookform/error-message";
 import axios from 'axios';
 import React, { useContext, useState } from 'react';
 import { useForm } from "react-hook-form";
@@ -26,6 +27,20 @@ const AddProduct = () => {
 		handleSubmit,
 		formState: { errors },
 	} = useForm();
+
+	const imageHostKey = import.meta.env.VITE_IMGBB_KEY;
+
+    const { data: sellerUsers = [] } = useQuery({
+        queryKey: ['sellerUsers',],
+        queryFn: async () => {
+            const res = await fetch(`http://localhost:4000/users`);
+            const data = await res.json();
+            return data;
+        }
+    }) 
+    const sellerName = sellerUsers.find(({email}) => email === user?.email)
+    console.log(sellerName?.isVerified);
+
     const onSubmit =(data) =>{
         toast.info('Product is adding to Our Site.')
         const sellPrice = parseInt(data.sellPrice)
@@ -41,9 +56,30 @@ const AddProduct = () => {
         } else{
             featuredValue = false
         }
-        const lowCaseCat = data.category.toLowercase()
-        console.log(data.sellPrice , 'product');
 
+        console.log(data.category);
+        let productImg ;
+
+        console.log(data.sellPrice , 'product');
+        const image = data.img[0];
+        const formData = new FormData();
+		formData.append("image", image);
+		const hostUrl = `https://api.imgbb.com/1/upload?key=${imageHostKey}`;
+        console.log(image, hostUrl, data);
+		fetch(hostUrl, {
+			method: "POST",
+			body: formData,
+		})
+			.then((res) => res.json())
+			.then((imgData) => {
+				if (imgData.success) {
+					productImg = imgData
+				}
+			})
+			.catch((error) => {
+				console.error("Error:", error);
+			});
+            console.log(productImg);
         const bookingData = {
             ...data,
             sellPrice :sellPrice,
@@ -51,7 +87,9 @@ const AddProduct = () => {
             email:user?.email,
             isStock:stokeValue,
             featured:featuredValue,
-            category:lowCaseCat
+            img:productImg,
+            isVerified:sellerName.isVerified,
+            isReported:false,
         }
         console.log(bookingData);
         axios.post("http://localhost:4000/products", bookingData)
@@ -76,16 +114,16 @@ const AddProduct = () => {
             </h2>
         </div>
         <div className="container mx-auto">
-            <div className="card w-8/12 mx-auto bg-indigo-50 shadow-xl my-2">
-            { success === true && <div className="alert alert-success shadow-lg p-20">
+            <div className="card w-10/12 lg:w-8/12 mx-auto bg-indigo-50 shadow-xl my-2">
+            { success === true && <div className="alert alert-success shadow-lg">
             <div>
                 <svg xmlns="http://www.w3.org/2000/svg" className="stroke-current flex-shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
                 <span> Added Successfully </span>
             </div>
         </div>}
-               <form onSubmit={handleSubmit(onSubmit)} className="space-y-12 p-20">
+               <form onSubmit={handleSubmit(onSubmit)} className="space-y-12 p-8 lg:p-20">
         <div className="grid grid-cols-6 gap-4 col-span-full lg:col-span-2">
-            <div className="col-span-full sm:col-span-2 flex flex-col">
+            <div className="col-span-full lg:col-span-2 flex flex-col mx-auto lg:mx-0">
             <label htmlFor="name" className="text-xl p-2">Product Name :</label>
                 <input
                 type="text"
@@ -94,30 +132,43 @@ const AddProduct = () => {
                 {...register("name" , { required: "Please enter Product Name" })}
                 defaultValue="Product name"
             />				
-            </div>
-            <div className="col-span-full sm:col-span-2 flex flex-col">
-            <label htmlFor="img" className="text-xl p-2">Image :</label>
-                <input
-                type="text"
-                className="input input-bordered input-secondary w-full max-w-xs mx-2"
-               
-                {...register("img" , { required: "Please enter Room Url" })}
-                placeholder="Add img Url"
-            />				
-            </div>
-            
-            
-            <div className="col-span-full sm:col-span-2 flex flex-col">
-            <label htmlFor="Model" className="text-xl p-2">Model:</label>
+            </div>  
+            <div className="col-span-full lg:col-span-2 flex flex-col mx-auto lg:mx-0">
+            <label htmlFor="model" className="text-xl p-2">Model:</label>
                 <input
                 type="text"
                 className="input input-bordered input-secondary w-full max-w-xs mx-2"
                 
-                {...register("Model" , { required: "Please enter Model" })}
+                {...register("model" , { required: "Please enter Model" })}
                 
             />				
             </div>
-            <div className="col-span-full sm:col-span-2 flex flex-col">
+            <div className="col-span-full lg:col-span-2 flex flex-col mx-auto lg:mx-0">
+									<label htmlFor="img" className="text-xl p-2">
+										Image
+									</label>
+
+									<input
+										{...register("img", {
+											required: "Product image is Required",
+										})}
+										type="file"
+										className="file-input file-input-bordered  w-full mx-2"
+									/>
+									<ErrorMessage
+										errors={errors}
+										name="img"
+										render={({ message }) => (
+											<p className="text-error">{message}</p>
+										)}
+									/>
+									{/* {errors.profileImg && (
+										<span className="text-error">Image is Required</span>
+									)} */}
+								</div>
+            
+       
+            <div className="col-span-full lg:col-span-2 flex flex-col mx-auto lg:mx-0">
             <label htmlFor="price" className="text-xl p-2">Orginal Price :</label>
                 <input
                 type="text"
@@ -127,7 +178,7 @@ const AddProduct = () => {
                 defaultValue="40"
             />				
             </div>
-            <div className="col-span-full sm:col-span-2 flex flex-col">
+            <div className="col-span-full lg:col-span-2 flex flex-col mx-auto lg:mx-0">
             <label htmlFor="sellPrice" className="text-xl p-2">Sell Price :</label>
                 <input
                 type="number"
@@ -137,7 +188,7 @@ const AddProduct = () => {
                 
             />				
             </div>
-            <div className="col-span-full sm:col-span-2 flex flex-col">
+            <div className="col-span-full lg:col-span-2 flex flex-col mx-auto lg:mx-0">
             <label htmlFor="usePeriodOfTime" className="text-xl p-2">Uses Period Of Time  :</label>
                 <input
                 type="text"
@@ -148,14 +199,14 @@ const AddProduct = () => {
             />				
             </div>
 
-            <div className="col-span-full sm:col-span-2 flex flex-col">
+            <div className="col-span-full lg:col-span-2 flex flex-col mx-auto lg:mx-0">
             <label htmlFor="featured" className="text-xl p-2">Advertisement :</label>
-            <select {...register("featured")} className="select select-secondary  w-full text-center " defaultValue="Good" >
+            <select {...register("featured")} className="select select-secondary  w-full text-center  max-w-xs" defaultValue="Good" >
                 <option value="true">Yes</option>
                 <option value="false">No</option>
             </select>				
             </div>
-            <div className="col-span-full sm:col-span-2 flex flex-col">
+            <div className="col-span-full lg:col-span-2 flex flex-col mx-auto lg:mx-0">
             <label htmlFor="conditionType" className="text-xl p-2">
             Condition Type:
             </label>
@@ -167,12 +218,12 @@ const AddProduct = () => {
                  </select>
             </div>
             </div>
-            <div className="col-span-full sm:col-span-2 flex flex-col ">
-            <label htmlFor="type" className="text-xl p-2">
+            <div className="col-span-full lg:col-span-2 flex flex-col mx-auto lg:mx-0">
+            <label htmlFor="category" className="text-xl p-2">
             Category: 
             </label>
             <div className=" w-full max-w-xs">
-            <select {...register("category")} className="select select-secondary w-full text-center" defaultValue='Please Select'>
+            <select {...register("category")} className="select select-secondary w-full text-center capitalize">
             <option  value={"Please Select"}>Select one</option>
                 {
                     productCate.map(cate => <option key={cate._id}
@@ -184,7 +235,7 @@ const AddProduct = () => {
                  </select>
             </div>
             </div>
-            <div className="col-span-full sm:col-span-2 flex flex-col ">
+            <div className="col-span-full lg:col-span-2 flex flex-col mx-auto lg:mx-0">
             <label htmlFor="contactNo" className="text-xl p-2">
             Contact No: 
             </label>
@@ -198,14 +249,14 @@ const AddProduct = () => {
             />	
             </div>
             </div>
-        <div className="col-span-full sm:col-span-2 flex flex-col">
+        <div className="col-span-full lg:col-span-2 flex flex-col mx-auto lg:mx-0">
             <label htmlFor="isStock" className="text-xl p-2">In Stock :</label>
-            <select {...register("isStock")} className="select select-secondary  w-full text-center " defaultValue="Good" >
+            <select {...register("isStock")} className="select select-secondary  w-full text-center max-w-xs " defaultValue="Good" >
                 <option value="true">Yes</option>
                 <option value="false">No</option>
             </select>				
             </div>
-            <div className="col-span-full sm:col-span-2 flex flex-col ">
+            <div className="col-span-full lg:col-span-2 flex flex-col mx-auto lg:mx-0">
             <label htmlFor="address" className="text-xl p-2">
             Location:
             </label>
@@ -221,7 +272,7 @@ const AddProduct = () => {
             <div className="col-span-full flex flex-col">
             <label htmlFor="about" className="text-xl p-2">about :</label>
    
-            <textarea {...register("about")} placeholder="Description" className="textarea textarea-secondary w-full"  
+            <textarea {...register("about")} placeholder="Description" className="textarea textarea-secondary  w-full max-w-xs lg:max-w-full"  
             defaultValue="about"
             />			
             </div>

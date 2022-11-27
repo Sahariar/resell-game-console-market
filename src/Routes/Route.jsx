@@ -17,6 +17,7 @@ import NotFound from "../Pages/NotFound/NotFound";
 import AddProduct from "../Pages/Prodcuts/AddProduct";
 import Category from "../Pages/Prodcuts/Category/Category";
 import ManageProduct from "../Pages/Prodcuts/ManageProduct";
+import SingleProduct from "../Pages/Prodcuts/SingleProduct";
 import PrivateRoutes from "./PrivateRoutes/PrivateRoutes";
 
 export const route = createBrowserRouter([
@@ -50,6 +51,11 @@ export const route = createBrowserRouter([
                 path:"/product/category/:id",
                 loader: async({params}) => fetch(`http://localhost:4000/products/category/${params.id}`),
                 element:<PrivateRoutes><Category></Category> </PrivateRoutes> 
+            },
+            {
+                path:"/product/single/:id",
+                loader: async({params}) => fetch(`http://localhost:4000/products/single?id=${params.id}`),
+                element:<PrivateRoutes><SingleProduct></SingleProduct> </PrivateRoutes> 
             },
 
         ]

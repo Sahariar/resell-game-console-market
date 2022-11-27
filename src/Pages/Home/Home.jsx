@@ -20,7 +20,6 @@ const Home = () => {
             return data;
         }
     })
-    console.log(advertise);
     return (
         <div>
             <Hero></Hero>
@@ -35,7 +34,8 @@ const Home = () => {
                 </>
                 :
                 <>
-                <HomeCategory></HomeCategory>
+                <HomeCategory 
+                ></HomeCategory>
                 <Stats></Stats>
                 </>
             }

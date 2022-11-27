@@ -6,8 +6,9 @@ import "swiper/css/pagination";
 import "swiper/css/navigation";
 import { Pagination, Navigation } from "swiper";
 import { Link } from 'react-router-dom';
+import { useQuery } from '@tanstack/react-query';
 const Featured = ({advertise , refetch , isLoading }) => {
-    
+
     return (
         <section className="py-10">
         <div className="container py-12 mx-auto space-y-24">
@@ -55,8 +56,8 @@ const Featured = ({advertise , refetch , isLoading }) => {
                     <p className="px-6 py-2 text-lg font-semibold text-center sm:font-bold lg:max-w-2xl xl:max-w-4xl">
                         {product.name}
                     </p>
-                    <Link to={`/product/${product._id}`}> 
-                    <span className='btn btn-primary btn-wide text-white' >Book Now</span>
+                    <Link to={`/product/single/${product._id}`}> 
+                    <span className='btn btn-primary btn-wide text-white' >Details</span>
                     </Link>
                    
                 </div>

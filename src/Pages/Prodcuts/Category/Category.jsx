@@ -6,20 +6,23 @@ import { Link } from "react-router-dom";
 import Loading from "../../../component/Shared/Loading";
 import ModalBook from "../../../component/ModalBook/ModalBook";
 import axios from "axios";
+import { MdOutlineReportGmailerrorred } from "react-icons/md";
+import { TbBrandBooking } from "react-icons/tb";
+import { toast } from "react-toastify";
 const Category = () => {
 	const cateData = useLoaderData();
-	const cateName = cateData.category;
-	const nameLower = cateName.toLowerCase();
+
+
 	const [modalData, setModalData] = useState([]);
 	const [userINfo, setUserInfo] = useState("");
 	const [sellerMail, setSellerMail] = useState("");
-	const url = `http://localhost:4000/products?category=${nameLower}`;
+	const url = `http://localhost:4000/products?category=${cateData.category}`;
 	const {
 		data: cateProducts = [],
 		isLoading,
 		refetch,
 	} = useQuery({
-		queryKey: ["cateProducts", nameLower],
+		queryKey: ["cateProducts",  cateData.category],
 		queryFn: async () => {
 			const res = await fetch(url);
 			const data = await res.json();
@@ -29,6 +32,27 @@ const Category = () => {
 	if (isLoading) {
 		return <Loading></Loading>;
 	} else refetch();
+
+	const handleReport = (item) => {
+		console.log(item);
+
+		const id =item._id
+		console.log(id)
+		axios.put(`http://localhost:4000/products/reported?id=${id}`)
+		.then(function (response) {
+            console.log(response);
+            if(response.data.acknowledged){
+                toast.success('Product Reported Successfully')
+            }
+        })
+        .catch(function (error) {
+            console.log(error);
+            toast.error(error)
+        });
+
+
+	}
+
 
 	return (
 		<section>
@@ -100,6 +124,7 @@ const Category = () => {
 									<p className="flex">Condition: {item?.conditionType}</p>
 									<p className="flex">Contact No: +{item?.contactNo}</p>
                                     <p className="flex">Location: {item?.address}</p>
+									<button className="btn bg-error ease-in hover:bg-error/80 mt-4 border-error hover:border-error/80 text-center justify-center items-center text-white" onClick={() => handleReport(item)}> <MdOutlineReportGmailerrorred className="text-2xl mx-2" /> Report to Admin </button>
 								</div>
 								<div className="justify-center my-4">
 									<label
@@ -107,7 +132,7 @@ const Category = () => {
 										className="btn btn-primary btn-block text-white"
 										onClick={() => setModalData(item)}
 									>
-										Book Now
+									<TbBrandBooking className="text-2xl mx-2" />	Book Now
 									</label>
 								</div>
 							</div>

@@ -31,7 +31,7 @@ const Orders = () => {
 
 	return (
         <section className='mx-auto w-10/12 my-10' >
-            <h3 className='py-10'>All Sellers</h3>
+            <h3 className='py-10 text-6xl text-center'>All Orders</h3>
 
             <div className="booking-area">
 

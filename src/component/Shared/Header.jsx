@@ -15,6 +15,7 @@ const Header = () => {
 			});
 	};
 
+	const pathName = window.location.pathname
 	 const url =`http://localhost:4000/products/category`
 	
 	 const { data: category = [], isLoading , refetch} = useQuery({
@@ -35,7 +36,7 @@ const Header = () => {
 	{ 
 	category.length > 0 && 
 		category.map( cate => <li key={cate._id}>
-			<NavLink to={`/product/category/${cate._id}`} className={'rounded-xl'}> {cate.category}</NavLink>
+			<NavLink to={`/product/category/${cate._id}`} className={'rounded-xl capitalize'}> {cate.category}</NavLink>
 			</li> )
 	}
 	<li>
@@ -83,17 +84,34 @@ const Header = () => {
 				</div>
 				<div className="navbar-end">
 					<div className="lg:hidden flex">
-					<label htmlFor="user-dash-drawer" className="btn btn-ghost"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
-  <path strokeLinecap="round" strokeLinejoin="round" d="M6 13.5V3.75m0 9.75a1.5 1.5 0 010 3m0-3a1.5 1.5 0 000 3m0 3.75V16.5m12-3V3.75m0 9.75a1.5 1.5 0 010 3m0-3a1.5 1.5 0 000 3m0 3.75V16.5m-6-9V3.75m0 3.75a1.5 1.5 0 010 3m0-3a1.5 1.5 0 000 3m0 9.75V10.5" />
-</svg>
-</label>
+						{
+							pathName === "/dashboard" ? <label htmlFor="user-dash-drawer" className="btn btn-ghost"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
+							<path strokeLinecap="round" strokeLinejoin="round" d="M3 4.5h14.25M3 9h9.75M3 13.5h9.75m4.5-4.5v12m0 0l-3.75-3.75M17.25 21L21 17.25" />
+						  </svg>						  
+						  </label>
+						  :
+						  <></>
+						}
+					
 					</div>
 				
 					{user?.email ? (
 						<div className="flex justify-center items-center gap-4">
-							<p>
-							{user?.email}
-								</p>
+							<label tabIndex={0} className="btn btn-ghost btn-circle avatar">
+							  <div className="w-10 rounded-full ring ring-secondary ring-offset-base-100 ring-offset-2">
+							  <div className="tooltip" data-tip={user?.displayName}>
+
+
+								<img src={
+													user?.photoURL
+														? user?.photoURL
+														: "https://placeimg.com/192/192/people"
+												} alt={user?.displayName ? user?.displayName : user?.email} />
+							  </div>
+							  </div>
+							</label>
+						
+								
 					<div onClick={handleLogOut} className="btn btn-primary text-white">
 									<Link>Logout</Link>
 					</div>

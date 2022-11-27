@@ -84,7 +84,7 @@ const ManageProduct = () => {
 										<td>
 											{products.featured ? (
 												<div className="bg-success text-center max-w-fit px-5 py-3 rounded-lg text-white">
-													Advertising
+												{products.isStock ? "Advertising" : "Product Sold Out"}	
 												</div>
 											) : (
 												<button

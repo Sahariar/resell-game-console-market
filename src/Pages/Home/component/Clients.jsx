@@ -7,7 +7,7 @@ const Clients = () => {
             <div>
                 <div className="grid lg:gap-8 lg:grid-cols-2 lg:items-center">
                 <div className="mt-10 lg:mt-0 lg:col-start-1 lg:row-start-1">
-                        <img src="https://source.unsplash.com/random/1000x600" alt="" className="mx-auto rounded-lg shadow-lg dark:bg-gray-500" />
+                        <img src="https://i.ibb.co/5jwgBjJ/sellon.jpg" alt="" className="mx-auto rounded-lg shadow-lg dark:bg-gray-500" />
                     </div>
                     <div className="lg:col-start-2 xl:mx-20">
                         <h3 className="text-5xl font-bold tracking-tight sm:text-6xl ">Sell on Resell Game Console Market</h3>

@@ -4,12 +4,12 @@ import { Link } from 'react-router-dom';
 
 const HomeCategory = () => {
 
-    const url = `http://localhost:4000/products/category`;
+    const productUrl = `http://localhost:4000/products/category`;
 
     const { data: productCate = [] } = useQuery({
         queryKey: ['productCate',],
         queryFn: async () => {
-            const res = await fetch(url);
+            const res = await fetch(productUrl);
             const data = await res.json();
             return data;
         }
@@ -31,7 +31,7 @@ const HomeCategory = () => {
                 <figure><img src={cate.catImg} alt={cate.category} /></figure>
                 
                 <div className="card-body flex items-center justify-center">
-                  <h2 className="text-white text-xl ease-in hover:text-2xl duration-300">{cate.category}</h2>
+                  <h2 className="text-white text-xl ease-in hover:text-2xl duration-300 capitalize">{cate.category}</h2>
                 </div>
             
               </div>

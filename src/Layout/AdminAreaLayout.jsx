@@ -28,7 +28,7 @@ const AdminAreaLayout = () => {
   </div> 
   <div className="drawer-side">
   <label htmlFor="user-dash-drawer" className="drawer-overlay"></label>
-    <ul className="menu p-4 w-80 text-base-content bg-accent/20 rounded-xl">
+    <ul className="menu p-4 w-80 text-base-content bg-info lg:bg-accent/20 rounded-xl">
       <li><NavLink to={'/dashboard/orders'}> My orders</NavLink></li>
       {
       isAdmin && <>
