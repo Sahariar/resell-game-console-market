@@ -21,7 +21,7 @@
  * My Orders route will have a table/cards. Each card/ table row will be an order having an image, title, price, and a pay button. On clicking the pay button, to take the user the payment page with fields for card details will pop up, or the user will be taken to a route where there is a form for filling up card details. Save the payment information in the database and inform the user via a modal/toast. Don't forget to update the button text to "paid" after payment. Please note, payment is done by Stripe.
  * Once an item is paid, it won't be displayed on the advertised item or on the category page. Only available items will be displayed to be purchased.
 
- * Use react query API calls also used Axios for at API call.
+ * Used react query API calls also used Axios for at API call.
 
 ### Common Feature
  * SPA site,
