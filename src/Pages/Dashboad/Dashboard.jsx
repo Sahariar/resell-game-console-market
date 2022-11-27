@@ -8,7 +8,8 @@ const Dashboard = () => {
             <h2 className='text-6xl text-center mt-10'>
             Welcome To Resell Game Console Market Dashboard
             </h2>
-            <label htmlFor="user-dash-drawer" className="btn btn-ghost">
+
+            <label htmlFor="user-dash-drawer" className="btn btn-ghost flex xl:hidden ">
 								<ImDrawer className="text-4xl text-primary"/>	
                                 Open Dashboard		  
 			</label>
