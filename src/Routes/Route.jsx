@@ -1,5 +1,6 @@
 import React from "react";
 import { createBrowserRouter } from "react-router-dom";
+import Loading from "../component/Shared/Loading";
 import AdminAreaLayout from "../Layout/AdminAreaLayout";
 import Root from "../Layout/Root";
 import Blog from "../Pages/Blog/Blog";
@@ -52,6 +53,10 @@ export const route = createBrowserRouter([
                 element:<Blog />
             },
             {
+                path:"/loading",
+                element:<Loading />
+            },
+            {
                 path:"/product/category/:id",
                 loader: async({params}) => fetch(`https://b612-used-products-resale-server-side-sahariar.vercel.app/products/category/${params.id}`),
                 element:<PrivateRoutes><Category></Category> </PrivateRoutes> 
@@ -61,6 +66,7 @@ export const route = createBrowserRouter([
                 loader: async({params}) => fetch(`https://b612-used-products-resale-server-side-sahariar.vercel.app/products/single?id=${params.id}`),
                 element:<PrivateRoutes><SingleProduct></SingleProduct> </PrivateRoutes> 
             },
+
 
         ]
     },{
