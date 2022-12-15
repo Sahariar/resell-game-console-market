@@ -2,7 +2,7 @@ import React from "react";
 
 const TopBrand = () => {
 	return (
-		<section className="top-brands-section bg-primary py-20">
+		<section className="top-brands-section bg-neutral py-20">
 			<div className="container mx-auto">
 				<div className="grid grid-cols-5">
 					
@@ -92,15 +92,15 @@ const TopBrand = () => {
         y2="501.116"
         gradientUnits="userSpaceOnUse"
       >
-        <stop offset="0.107" stopColor="#c957e6"></stop>
-        <stop offset="1" stopColor="#1a9fff"></stop>
+        <stop offset="0.107" stopColor="#f2f2f2"></stop>
+        <stop offset="1" stopColor="#f6f6f6"></stop>
       </linearGradient>
       <path
         fill="url(#a)"
         d="M200.25 600.27C89.51 600.27 0 510.89 0 400.32s89.51-199.95 200.25-199.95 200.26 89.38 200.26 199.95-89.52 199.95-200.26 199.95z"
       ></path>
       <path
-        fill="#1b1b1b"
+        fill="#f3f3f3"
         d="M456.98 399.89c0-141.57-114.95-256.34-256.74-256.34V0c221.2 0 400.51 179.04 400.51 399.89 0 220.86-179.31 399.9-400.51 399.9V656.24c141.79 0 256.74-114.77 256.74-256.35z"
       ></path>
     </svg>

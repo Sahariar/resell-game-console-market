@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 const Clients = () => {
     return (
-        <section className=" py-20">
+        <section className="py-40">
         <div className="container  mx-auto space-y-24">
             <div>
                 <div className="grid lg:gap-8 lg:grid-cols-2 lg:items-center">

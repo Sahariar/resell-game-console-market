@@ -11,6 +11,8 @@ import { useQuery } from '@tanstack/react-query';
 import Discount from './component/Discount';
 import FaqCom from './component/FaqCom';
 import TopBrand from './component/TopBrand';
+import BannerShop from './component/BannerShop';
+import ImageFeed from './component/ImageFeed';
 
 const Home = () => {
     const url = `https://b612-used-products-resale-server-side-sahariar.vercel.app/advertise`;
@@ -46,8 +48,9 @@ const Home = () => {
             <FaqCom></FaqCom>
             <TopBrand></TopBrand>
             <Clients></Clients>
+            <BannerShop></BannerShop>
             <Testimonail></Testimonail>
-           
+           <ImageFeed></ImageFeed>
             
           
         </div>
