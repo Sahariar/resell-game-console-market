@@ -8,6 +8,9 @@ import HomeCategory from './component/HomeCategory';
 import Stats from './component/Stats';
 import Testimonail from './component/Testimonail';
 import { useQuery } from '@tanstack/react-query';
+import Discount from './component/Discount';
+import FaqCom from './component/FaqCom';
+import TopBrand from './component/TopBrand';
 
 const Home = () => {
     const url = `https://b612-used-products-resale-server-side-sahariar.vercel.app/advertise`;
@@ -39,8 +42,12 @@ const Home = () => {
                 <Stats></Stats>
                 </>
             }
-            <Testimonail></Testimonail>
+            <Discount></Discount>
+            <FaqCom></FaqCom>
+            <TopBrand></TopBrand>
             <Clients></Clients>
+            <Testimonail></Testimonail>
+           
             
           
         </div>
