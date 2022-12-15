@@ -27,7 +27,9 @@ const ManageProduct = () => {
 	if (isLoader) {
 		return <Loading></Loading>;
 	}
-
+	const handleAddToFeatured = (id) =>{
+		console.log(id);
+	}
 	const handleStock = (data, id) => {
 		// console.log(data.target.value, id);
 		const selectValue = data.target.value;
